@@ -12,4 +12,3 @@ class TecnicoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tecnico
         fields = "__all__" 
-        depth = 1

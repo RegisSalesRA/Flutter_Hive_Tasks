@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/atividades/', AtividadeList.as_view()),
     path('api/atividades/<int:pk>', AtividadeDetail.as_view()),
-    path('api/tecnicos', TecnicoList.as_view()),
+    path('api/tecnicos/', TecnicoList.as_view()),
     path('api/tecnicos/<int:pk>', TecnicoDetail.as_view()),
     
 ]
