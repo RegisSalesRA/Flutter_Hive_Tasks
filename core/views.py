@@ -14,3 +14,11 @@ class AtividadeList(generics.ListCreateAPIView):
 class AtividadeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Atividade.objects.all()
     serializer_class = AtividadeSerializer
+
+class TecnicoList(generics.ListCreateAPIView):
+    queryset = Tecnico.objects.all()
+    serializer_class = TecnicoSerializer
+
+class TecnicoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Tecnico.objects.all()
+    serializer_class = TecnicoSerializer    

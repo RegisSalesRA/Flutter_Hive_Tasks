@@ -7,7 +7,13 @@ from django.db import models
 class Atividade(models.Model):
     nome = models.CharField(max_length=100)
     is_finished = models.BooleanField(default=False)
+    class Meta:
+        verbose_name = 'Atividade'
+        verbose_name_plural = 'Atividades'
 
+    def __repr__(self):
+        return f"Atividade:{self.nome}"
+    
     def __str__(self):
         return self.nome        
 
@@ -17,11 +23,11 @@ class Tecnico(models.Model):
     atividade = models.ForeignKey(Atividade, on_delete=models.CASCADE)    
 
     class Meta:
-        verbose_name = 'Favorite'
-        verbose_name_plural = 'Favorites'
+        verbose_name = 'Tecnico'
+        verbose_name_plural = 'Tecnicos'
 
     def __repr__(self):
-        return f"BookID ={self.book.id}user={self.user.username}|ISFavorite={self.isFavorit}"
+        return f"Tecnico:{self.nome}"
     
     def __str__(self):
         return self.nome
