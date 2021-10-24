@@ -8,7 +8,7 @@ part of 'tecnicos_model.dart';
 
 class TecnicosAdapter extends TypeAdapter<Tecnicos> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   Tecnicos read(BinaryReader reader) {
