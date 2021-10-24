@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 100,
             ),
-            Text("Atividades"),
+            Text("Administrador"),
             Text("Tecnicos"),
           ],
         ),
