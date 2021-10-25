@@ -12,6 +12,16 @@ class _AdministradorPageState extends State<AdministradorPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.redAccent,
+            child: Icon(
+              Icons.add,
+              size: 30,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              print("Adicionar tarefa ao técnico");
+            }),
         appBar: AppBar(
           centerTitle: true,
           title: Text("Administrador Page"),
@@ -26,16 +36,23 @@ class _AdministradorPageState extends State<AdministradorPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         "Bem-vindo Sr.adminstrador",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                       SizedBox(
-                        height: size.height / 5,
+                        height: size.height / 15,
                       ),
                       Text("Para conferir os itens arraste para o lado!",
                           style: TextStyle(color: Colors.white, fontSize: 20)),
+                      SizedBox(
+                        height: size.height / 25,
+                      ),
+                      Text(
+                          "Clique no botão abaixo para adicionar tarefa ao técnico!",
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
                     ],
                   ),
                   SingleChildScrollView(
