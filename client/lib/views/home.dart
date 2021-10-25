@@ -13,11 +13,12 @@ class _HomeState extends State<Home> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         centerTitle: true,
         title: Text("Home Page"),
       ),
       body: Container(
-          decoration: BoxDecoration(color: Colors.blue),
+          decoration: BoxDecoration(color: Colors.red),
           child: Padding(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -40,7 +41,7 @@ class _HomeState extends State<Home> {
                     width: size.width,
                     child: Center(
                       child: Text(
-                        "Administradores",
+                        "Área Administradores",
                         style: const TextStyle(
                             decoration: TextDecoration.none,
                             color: Colors.white,
@@ -65,7 +66,7 @@ class _HomeState extends State<Home> {
                     width: size.width,
                     child: Center(
                       child: Text(
-                        "Tecnicos",
+                        "Área dos técnicos",
                         style: const TextStyle(
                             decoration: TextDecoration.none,
                             color: Colors.white,
