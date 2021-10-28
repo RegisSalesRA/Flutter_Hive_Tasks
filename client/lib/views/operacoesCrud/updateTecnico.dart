@@ -1,21 +1,32 @@
-import 'package:client/model/atividade_model.dart';
+ 
+import 'package:client/model/tecnicos_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class AdicionarAtividade extends StatefulWidget {
+class UpdateTecnico extends StatefulWidget {
+  final int? id;
+  final String? nomeCurrent;
+
+  UpdateTecnico({Key? key, this.id, this.nomeCurrent}) : super(key: key);
+
   final formkey = GlobalKey<FormState>();
   @override
-  _AdicionarAtividadeState createState() => _AdicionarAtividadeState();
+  _UpdateTecnicoState createState() => _UpdateTecnicoState();
 }
 
-class _AdicionarAtividadeState extends State<AdicionarAtividade> {
+class _UpdateTecnicoState extends State<UpdateTecnico> {
   String nome = "";
-  bool isComplete = false;
+  String descricao = "";
 
-  adicioinarAtividade() async {
+  updateTecnico() async {
     if (widget.formkey.currentState!.validate()) {
-      Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
-      atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
+      final index = widget.id;
+      Tecnicos tecnicoModel = Tecnicos(
+        nome: nome,
+        descricao: descricao,
+      );
+      Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+      tecnicoBox.putAt(index!, tecnicoModel);
       Navigator.of(context).pop();
     }
   }
@@ -25,8 +36,8 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:
-            Text("Criar Atividade", style: TextStyle(fontFamily: 'Montserrat')),
+        title: Text(widget.nomeCurrent!,
+            style: TextStyle(fontFamily: 'Montserrat')),
       ),
       body: Form(
           key: widget.formkey,
@@ -54,32 +65,26 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
                   SizedBox(
                     height: 15,
                   ),
-                  SizedBox(
-                    height: 15,
+                  TextFormField(
+                    validator: (v) {
+                      if (v!.isEmpty) {
+                        return "Por favor preencher os dados";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(hintText: 'Descrição'),
+                    onChanged: (value) {
+                      setState(() {
+                        descricao = value;
+                      });
+                    },
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Checkbox(
-                      value: isComplete,
-                      activeColor: Colors.orange,
-                      onChanged: (bool? valor) {
-                        setState(() {
-                          isComplete = valor!;
-                        });
-                        print("Checkbox: " + valor.toString());
-                      },
-                    ),
-                    Text(
-                      'is completed?',
-                      style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                    ),
-                  ]),
                   SizedBox(
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: adicioinarAtividade,
-                      child: Text('Submit Data')),
+                      onPressed: updateTecnico,
+                      child: Text('Atualizar Técnico')),
                 ],
               ))),
     );

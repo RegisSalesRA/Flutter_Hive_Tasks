@@ -2,6 +2,8 @@ import 'package:client/views/atividadeDetails.dart';
 import 'package:client/views/tecnicosDetails.dart';
 import 'package:flutter/material.dart';
 
+import 'operacoesCrud/atribuirAtividadeTecnico.dart';
+
 class AdministradorPage extends StatefulWidget {
   const AdministradorPage({Key? key}) : super(key: key);
 
@@ -15,23 +17,27 @@ class _AdministradorPageState extends State<AdministradorPage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.blueAccent,
             child: Icon(
               Icons.add,
               size: 30,
               color: Colors.white,
             ),
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AtribuirAtividadeTecnico()),
+              );
               print("Adicionar tarefa ao técnico");
             }),
         appBar: AppBar(
           centerTitle: true,
           title: Text("Administrador Page"),
-          backgroundColor: Colors.red,
         ),
         body: Container(
             width: size.width,
-            decoration: BoxDecoration(color: Colors.red),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Padding(
               padding: EdgeInsets.all(5),
               child: Column(
@@ -65,15 +71,16 @@ class _AdministradorPageState extends State<AdministradorPage> {
                           InkWell(
                             onTap: () {
                               print("Visualizar Atividades");
-                                          Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AtividadeDetailsPage()),
-                    );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AtividadeDetailsPage()),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.redAccent,
+                                  color: Colors.blueAccent,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0))),
                               height: size.height / 4,
@@ -95,15 +102,15 @@ class _AdministradorPageState extends State<AdministradorPage> {
                           InkWell(
                             onTap: () {
                               print("Mudando para pagina de Tecnicos");
-                                Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TecnicosDetailPage()),
-                    );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TecnicosDetailPage()),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.redAccent,
+                                  color: Colors.blueAccent,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.0))),
                               height: size.height / 4,

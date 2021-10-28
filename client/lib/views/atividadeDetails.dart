@@ -15,19 +15,11 @@ class AtividadeDetailsPage extends StatefulWidget {
 class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     var boxform = Hive.box<Atividades>('atividades').listenable();
     print(boxform.value.values);
 
-    @override
-    void dispose() {
-      Hive.box('atividades');
-      super.dispose();
-    }
-
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.redAccent,
         child: Icon(Icons.add),
         onPressed: () {
           print("Criar Atividade");
@@ -37,7 +29,6 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
         },
       ),
       appBar: AppBar(
-        backgroundColor: Colors.red,
         centerTitle: true,
         title: Text("Lista de Atividades"),
       ),
@@ -79,12 +70,3 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
     );
   }
 }
-
-/*
-    trailing: Icon(
-                      form.isComplete
-                          ? Icons.check_box
-                          : Icons.check_box_outline_blank,
-                      color: Colors.blue,
-                    ),
-*/

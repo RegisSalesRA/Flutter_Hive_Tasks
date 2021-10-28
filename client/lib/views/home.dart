@@ -13,12 +13,11 @@ class _HomeState extends State<Home> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
         centerTitle: true,
         title: Text("Home Page"),
       ),
       body: Container(
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: BoxDecoration(color: Colors.blue),
           child: Padding(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -35,7 +34,7 @@ class _HomeState extends State<Home> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.redAccent,
+                        color: Colors.blueAccent,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     height: size.height / 4,
                     width: size.width,
@@ -60,7 +59,7 @@ class _HomeState extends State<Home> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.redAccent,
+                        color: Colors.blueAccent,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     height: size.height / 4,
                     width: size.width,
@@ -77,8 +76,7 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-          )
-          ),
+          )),
     );
   }
 }

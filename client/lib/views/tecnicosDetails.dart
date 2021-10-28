@@ -1,4 +1,9 @@
+import 'package:client/model/tecnicos_model.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'operacoesCrud/createTecnico.dart';
+import 'operacoesCrud/updateTecnico.dart';
 
 class TecnicosDetailPage extends StatefulWidget {
   const TecnicosDetailPage({Key? key}) : super(key: key);
@@ -10,56 +15,63 @@ class TecnicosDetailPage extends StatefulWidget {
 class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+   
+    var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
+    print(boxform.value.values);
+
+   
+
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.red,
-          centerTitle: true,
-          title: Text("Lista de Técnicos"),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            print("Criar Técnico");
+
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => CreateTecnico()),
+            );
+          }),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Lista de Técnicos"),
+      ),
+      body: Container(
+        child: ValueListenableBuilder(
+          valueListenable: boxform,
+          builder: (context, Box<Tecnicos> box, _) {
+            if (box.values.isEmpty) {
+              return Center(
+                child: Text("No data available!",
+                    style: TextStyle(fontFamily: 'Montserrat')),
+              );
+            }
+            return ListView.builder(
+                itemCount: box.length,
+                itemBuilder: (context, index) {
+                  Tecnicos? form = box.getAt(index);
+
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateTecnico(
+                                    id: index,
+                                    nomeCurrent: form!.nome!,
+                                  )));
+                    },
+                    onLongPress: () async {
+                      await box.deleteAt(index);
+                    },
+                    title: Text(form!.nome!,
+                        style:
+                            TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
+                    subtitle: Text(form.descricao!),
+                  );
+                });
+          },
         ),
-        body: Container(
-            width: size.width,
-            decoration: BoxDecoration(color: Colors.red),
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        "Bem-vindo Sr.administrador a lista de Técnicos",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      SizedBox(
-                        height: size.height / 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          print("Atividade dos técnicos");
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.redAccent,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0))),
-                          height: size.height / 4,
-                          width: size.width,
-                          child: Center(
-                            child: Text(
-                              "Atividade dos Técnicos",
-                              style: const TextStyle(
-                                  decoration: TextDecoration.none,
-                                  color: Colors.white,
-                                  fontSize: 30),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )));
+      ),
+    );
   }
 }

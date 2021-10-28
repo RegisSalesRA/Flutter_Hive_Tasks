@@ -1,21 +1,27 @@
 import 'package:client/model/atividade_model.dart';
+import 'package:client/model/tecnicos_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class AdicionarAtividade extends StatefulWidget {
+class CreateTecnico extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
   @override
-  _AdicionarAtividadeState createState() => _AdicionarAtividadeState();
+  _CreateTecnicoState createState() => _CreateTecnicoState();
 }
 
-class _AdicionarAtividadeState extends State<AdicionarAtividade> {
+class _CreateTecnicoState extends State<CreateTecnico> {
   String nome = "";
-  bool isComplete = false;
+  String descricao = "";
+  List<Atividades> atividadesAtribuidas = [];
 
-  adicioinarAtividade() async {
+  adicionarTecnico() async {
     if (widget.formkey.currentState!.validate()) {
-      Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
-      atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
+      Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+      tecnicoBox.add(Tecnicos(
+        nome: nome,
+        descricao: descricao,
+      ));
+
       Navigator.of(context).pop();
     }
   }
@@ -25,8 +31,8 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:
-            Text("Criar Atividade", style: TextStyle(fontFamily: 'Montserrat')),
+        title: Text("Lista de Tecnicos",
+            style: TextStyle(fontFamily: 'Montserrat')),
       ),
       body: Form(
           key: widget.formkey,
@@ -54,32 +60,25 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
                   SizedBox(
                     height: 15,
                   ),
-                  SizedBox(
-                    height: 15,
+                  TextFormField(
+                    validator: (v) {
+                      if (v!.isEmpty) {
+                        return "Por favor preencher os dados";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(hintText: 'Descricao'),
+                    onChanged: (value) {
+                      setState(() {
+                        descricao = value;
+                      });
+                    },
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Checkbox(
-                      value: isComplete,
-                      activeColor: Colors.orange,
-                      onChanged: (bool? valor) {
-                        setState(() {
-                          isComplete = valor!;
-                        });
-                        print("Checkbox: " + valor.toString());
-                      },
-                    ),
-                    Text(
-                      'is completed?',
-                      style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                    ),
-                  ]),
                   SizedBox(
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: adicioinarAtividade,
-                      child: Text('Submit Data')),
+                      onPressed: adicionarTecnico, child: Text('Submit Data')),
                 ],
               ))),
     );
