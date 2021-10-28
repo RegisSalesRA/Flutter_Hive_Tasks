@@ -19,7 +19,7 @@ class TecnicosAdapter extends TypeAdapter<Tecnicos> {
     return Tecnicos(
       nome: fields[0] as String?,
       descricao: fields[1] as String?,
-      atividades_atribuidas: (fields[2] as List?)?.cast<Atividades>(),
+      atividadesAtribuidas: (fields[2] as List?)?.cast<Atividades>(),
     );
   }
 
@@ -32,7 +32,7 @@ class TecnicosAdapter extends TypeAdapter<Tecnicos> {
       ..writeByte(1)
       ..write(obj.descricao)
       ..writeByte(2)
-      ..write(obj.atividades_atribuidas);
+      ..write(obj.atividadesAtribuidas);
   }
 
   @override

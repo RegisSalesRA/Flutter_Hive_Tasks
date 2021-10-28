@@ -1,3 +1,5 @@
+import 'package:client/views/atividadeDetails.dart';
+import 'package:client/views/tecnicosDetails.dart';
 import 'package:flutter/material.dart';
 
 class AdministradorPage extends StatefulWidget {
@@ -63,6 +65,11 @@ class _AdministradorPageState extends State<AdministradorPage> {
                           InkWell(
                             onTap: () {
                               print("Visualizar Atividades");
+                                          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AtividadeDetailsPage()),
+                    );
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -88,6 +95,11 @@ class _AdministradorPageState extends State<AdministradorPage> {
                           InkWell(
                             onTap: () {
                               print("Mudando para pagina de Tecnicos");
+                                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TecnicosDetailPage()),
+                    );
                             },
                             child: Container(
                               decoration: BoxDecoration(

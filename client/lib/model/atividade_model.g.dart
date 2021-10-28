@@ -18,7 +18,7 @@ class AtividadesAdapter extends TypeAdapter<Atividades> {
     };
     return Atividades(
       nome: fields[0] as String?,
-      is_complete: fields[1] as bool?,
+      isComplete: fields[1] as bool?,
     );
   }
 
@@ -29,7 +29,7 @@ class AtividadesAdapter extends TypeAdapter<Atividades> {
       ..writeByte(0)
       ..write(obj.nome)
       ..writeByte(1)
-      ..write(obj.is_complete);
+      ..write(obj.isComplete);
   }
 
   @override

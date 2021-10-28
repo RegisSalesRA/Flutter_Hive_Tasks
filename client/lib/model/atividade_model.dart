@@ -7,7 +7,7 @@ class Atividades extends HiveObject {
   String? nome;
 
   @HiveField(1)
-  bool? is_complete;
+  bool? isComplete;
 
-  Atividades({this.nome, this.is_complete});
+  Atividades({this.nome, this.isComplete});
 }

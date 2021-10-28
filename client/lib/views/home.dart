@@ -1,5 +1,5 @@
 import 'package:client/views/administrador.dart';
-import 'package:client/views/tecnicos_page.dart';
+import 'package:client/views/tecnicos.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -77,7 +77,8 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-          )),
+          )
+          ),
     );
   }
 }
