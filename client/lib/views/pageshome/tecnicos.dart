@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pageDetails/atividadeTecnicoDetails.dart';
+
 class TecnicosPage extends StatefulWidget {
   const TecnicosPage({Key? key}) : super(key: key);
 
@@ -13,13 +15,12 @@ class _TecnicosPageState extends State<TecnicosPage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
           centerTitle: true,
           title: Text("Técnicos Page"),
         ),
         body: Container(
             width: size.width,
-            decoration: BoxDecoration(color: Colors.red),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Padding(
               padding: EdgeInsets.all(5),
               child: Column(
@@ -36,11 +37,16 @@ class _TecnicosPageState extends State<TecnicosPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          print("Atividade dos técnicos");
+                          print("Atividades dos tecnicos");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AtividadeTecnicoDetails()));
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.redAccent,
+                              color: Colors.blueAccent,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0))),
                           height: size.height / 4,

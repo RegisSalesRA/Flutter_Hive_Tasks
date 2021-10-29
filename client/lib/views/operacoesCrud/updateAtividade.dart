@@ -73,7 +73,7 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
                         setState(() {
                           isComplete = valor!;
                         });
-                        print("Checkbox: " + valor.toString());
+                     
                       },
                     ),
                     Text(

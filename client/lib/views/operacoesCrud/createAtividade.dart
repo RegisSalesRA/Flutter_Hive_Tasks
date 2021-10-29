@@ -12,7 +12,7 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
   String nome = "";
   bool isComplete = false;
 
-  adicioinarAtividade() async {
+  adicioniarAtividade() async {
     if (widget.formkey.currentState!.validate()) {
       Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
       atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
@@ -65,20 +65,17 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
                         setState(() {
                           isComplete = valor!;
                         });
-                        print("Checkbox: " + valor.toString());
+                      
                       },
                     ),
-                    Text(
-                      'is completed?',
-                      style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                    ),
+                 
+                 
                   ]),
                   SizedBox(
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: adicioinarAtividade,
+                      onPressed: adicioniarAtividade,
                       child: Text('Submit Data')),
                 ],
               ))),

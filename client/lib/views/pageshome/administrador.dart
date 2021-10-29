@@ -1,8 +1,8 @@
-import 'package:client/views/atividadeDetails.dart';
-import 'package:client/views/tecnicosDetails.dart';
+import 'package:client/views/pageDetails/atividadeDetails.dart';
+import 'package:client/views/pageDetails/tecnicosDetails.dart';
 import 'package:flutter/material.dart';
 
-import 'operacoesCrud/atribuirAtividadeTecnico.dart';
+import '../operacoesCrud/atribuirAtividadeTecnico.dart';
 
 class AdministradorPage extends StatefulWidget {
   const AdministradorPage({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _AdministradorPageState extends State<AdministradorPage> {
                 MaterialPageRoute(
                     builder: (context) => AtribuirAtividadeTecnico()),
               );
-              print("Adicionar tarefa ao técnico");
+           
             }),
         appBar: AppBar(
           centerTitle: true,
@@ -70,7 +70,7 @@ class _AdministradorPageState extends State<AdministradorPage> {
                         children: [
                           InkWell(
                             onTap: () {
-                              print("Visualizar Atividades");
+                             
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -101,7 +101,7 @@ class _AdministradorPageState extends State<AdministradorPage> {
                           ),
                           InkWell(
                             onTap: () {
-                              print("Mudando para pagina de Tecnicos");
+                          
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

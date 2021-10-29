@@ -31,7 +31,7 @@ class _CreateTecnicoState extends State<CreateTecnico> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Lista de Tecnicos",
+        title: Text("Criar de Tecnicos",
             style: TextStyle(fontFamily: 'Montserrat')),
       ),
       body: Form(

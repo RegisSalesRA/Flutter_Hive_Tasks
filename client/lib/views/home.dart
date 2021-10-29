@@ -1,5 +1,5 @@
-import 'package:client/views/administrador.dart';
-import 'package:client/views/tecnicos.dart';
+import 'package:client/views/pageshome/administrador.dart';
+import 'package:client/views/pageshome/tecnicos.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
               children: [
                 InkWell(
                   onTap: () {
-                    print("Mudando para pagina de Administradores");
+                   
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
                 ),
                 InkWell(
                   onTap: () {
-                    print("Mudando para pagina de Tecnicos");
+                 
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => TecnicosPage()),
