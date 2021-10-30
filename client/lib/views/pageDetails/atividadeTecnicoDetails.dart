@@ -14,7 +14,6 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
   @override
   Widget build(BuildContext context) {
     var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
-//    print(boxform.value.values.first.atividadesAtribuidas);
 
     return Scaffold(
       floatingActionButton:
@@ -43,7 +42,7 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                   }
 
                   return ListTile(
-                    title: Text(tecnicoBox!.descricao!,
+                    title: Text(tecnicoBox!.nome!,
                         style:
                             TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
                     trailing: InkWell(
@@ -51,9 +50,12 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => UpDateAtividadeTecnico()),
+                              builder: (context) => UpDateAtividadeTecnico(
+                                    id: index,
+                                    nomeCurrent: tecnicoBox.nome!,
+                                    descricaoCurrent: tecnicoBox.descricao!,
+                                  )),
                         );
-                        print("Olhar as atividades dos tecnicos");
                       },
                       child: Text("Conferir atividades"),
                     ),

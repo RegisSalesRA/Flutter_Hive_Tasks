@@ -36,8 +36,7 @@ class _TecnicosPageState extends State<TecnicosPage> {
                         height: size.height / 5,
                       ),
                       InkWell(
-                        onTap: () {
-                          print("Atividades dos tecnicos");
+                        onTap: () { 
                           Navigator.push(
                               context,
                               MaterialPageRoute(

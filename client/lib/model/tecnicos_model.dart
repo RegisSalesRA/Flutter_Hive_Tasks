@@ -12,7 +12,7 @@ class Tecnicos extends HiveObject {
   String? descricao;
 
   @HiveField(2)
-  List<Atividades>? atividadesAtribuidas;
+  List<Atividades>? atividadesAtribuidas = [];
 
   Tecnicos({this.nome, this.descricao, this.atividadesAtribuidas});
 }

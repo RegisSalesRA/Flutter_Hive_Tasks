@@ -15,15 +15,6 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
   @override
   Widget build(BuildContext context) {
     var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
-//    print(boxform.value.values.first.atividadesAtribuidas);
-    var lista_vaiusar = [];
-    var lista_recebida = boxform.value.values.first.atividadesAtribuidas;
-    if (lista_recebida != null) {
-      for (var iten in lista_recebida) {
-        lista_vaiusar.add(iten);
-      }
-    }
-    print(lista_vaiusar.first.isComplete);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(

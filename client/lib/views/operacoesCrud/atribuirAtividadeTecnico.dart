@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:client/model/atividade_model.dart';
 import 'package:client/model/tecnicos_model.dart';
 
 import 'escolherAtividade.dart';
@@ -16,7 +15,6 @@ class AtribuirAtividadeTecnico extends StatefulWidget {
 class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
   String nome = "";
   String descricao = "";
-  List<Atividades> atividadesAtribuidas = [];
 
   @override
   Widget build(BuildContext context) {

@@ -15,40 +15,93 @@ class EscolherAtividade extends StatefulWidget {
 }
 
 class _EscolherAtividadeState extends State<EscolherAtividade> {
-  List<Atividades> atividadesAtribuidas = [];
-  @override
-  Widget build(BuildContext context) {
-    var boxform = Hive.box<Atividades>('atividades').listenable();
+  var boxAtividades = Hive.box<Atividades>('atividades').listenable();
 
-    void adicionarTarefa() {
-      final index = widget.id;
+  List<Atividades> listaAdicionadas = [];
+
+  void adicionarTarefa() {
+    final id = widget.id;
+
+    List<Atividades> listaAdicionadas2 = [];
+    for (var iten in listaAdicionadas) {
+      listaAdicionadas2.add(iten);
+    }
+
+    if (listaAdicionadas2 != []) {
       Tecnicos tecnicoModel = Tecnicos(
         nome: widget.nomeCurrent,
         descricao: widget.descricaoCurrent,
-        atividadesAtribuidas: atividadesAtribuidas,
+        atividadesAtribuidas: listaAdicionadas2,
       );
-      Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
-      tecnicoBox.putAt(index!, tecnicoModel);
-      Navigator.of(context).pop();
-    }
 
+      Box<Tecnicos>? tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+      tecnicoBox.putAt(id!, tecnicoModel);
+      // print(tecnicoModel.atividadesAtribuidas!.first.nome);
+
+      // Navigator.of(context).pop();
+      //  print(atividadesEscolhidas);
+    } else
+      () {
+        print("Não foi possível adicionar");
+      };
+  }
+
+  void checarSeExiste(Atividades indexAtividade) {
+    if (listaAdicionadas.contains(indexAtividade))
+      print("A ${indexAtividade.nome} já foi adicionada");
+    else {
+      listaAdicionadas.add(indexAtividade);
+    }
+    print(listaAdicionadas.length);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          adicionarTarefa();
+        },
+        child: Text("Texto"),
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.nomeCurrent!),
       ),
       body: ValueListenableBuilder(
-        valueListenable: boxform,
-        builder: (context, Box<Atividades> box, _) {
-          if (box.values.isEmpty) {
+        valueListenable: boxAtividades,
+        builder: (context, Box<Atividades> atividadeBox, _) {
+          if (atividadeBox.values.isEmpty) {
             return Center(
               child: Text("No data available!",
                   style: TextStyle(fontFamily: 'Montserrat')),
             );
           }
           return ListView.builder(
-              itemCount: box.length,
+              itemCount: atividadeBox.length,
               itemBuilder: (context, index) {
+                //  print(atividadeBox.values);
+                //  print("Finalmente ${listaTeste}");
+                List<Atividades> atividadesListas =
+                    atividadeBox.values.toList();
+                //  print(atividadesListas);
+                return ListTile(
+                  title: Text(atividadesListas[index].nome.toString(),
+                      style: TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
+                  onLongPress: () {
+                    //   coletarIndex(atividadeParaLista[index]);
+                    checarSeExiste(atividadesListas[index]);
+                  },
+                );
+              });
+        },
+      ),
+    );
+  }
+}
+
+
+/*
                 Atividades? atividadeBox = box.getAt(index);
                 print(atividadeBox!.nome);
                 return ListTile(
@@ -59,9 +112,13 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
                     title: Text(atividadeBox.nome.toString(),
                         style:
                             TextStyle(fontSize: 20, fontFamily: 'Montserrat')));
-              });
-        },
-      ),
-    );
-  }
-}
+
+
+
+
+  var listaTeste = [];
+                var atividadeParaLista = atividadeBox.values.toList();
+                for (var iten in atividadeBox.values) {
+                  listaTeste.add(iten);
+                }
+*/
