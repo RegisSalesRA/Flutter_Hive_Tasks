@@ -54,6 +54,7 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                                     id: index,
                                     nomeCurrent: tecnicoBox.nome!,
                                     descricaoCurrent: tecnicoBox.descricao!,
+                                    
                                   )),
                         );
                       },

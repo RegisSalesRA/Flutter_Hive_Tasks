@@ -15,9 +15,14 @@ class EscolherAtividade extends StatefulWidget {
 }
 
 class _EscolherAtividadeState extends State<EscolherAtividade> {
+
+  
   var boxAtividades = Hive.box<Atividades>('atividades').listenable();
+  Box<Tecnicos> boxTecnicos = Hive.box<Tecnicos>('tecnicos');
 
   List<Atividades> listaAdicionadas = [];
+
+  // List<Atividades> listaJaAdicionadas = boxTecnicos.
 
   void adicionarTarefa() {
     final id = widget.id;
@@ -36,10 +41,10 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
 
       Box<Tecnicos>? tecnicoBox = Hive.box<Tecnicos>('tecnicos');
       tecnicoBox.putAt(id!, tecnicoModel);
-      // print(tecnicoModel.atividadesAtribuidas!.first.nome);
+      print(tecnicoModel.atividadesAtribuidas!.first.nome);
 
       // Navigator.of(context).pop();
-      //  print(atividadesEscolhidas);
+      print(listaAdicionadas2);
     } else
       () {
         print("Não foi possível adicionar");
@@ -47,7 +52,8 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
   }
 
   void checarSeExiste(Atividades indexAtividade) {
-    if (listaAdicionadas.contains(indexAtividade))
+    if (listaAdicionadas.contains(indexAtividade) ||
+        listaAdicionadas.contains(indexAtividade))
       print("A ${indexAtividade.nome} já foi adicionada");
     else {
       listaAdicionadas.add(indexAtividade);

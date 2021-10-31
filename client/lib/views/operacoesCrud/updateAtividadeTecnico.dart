@@ -1,4 +1,6 @@
+import 'package:client/model/atividade_model.dart';
 import 'package:client/model/tecnicos_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -16,39 +18,37 @@ class UpDateAtividadeTecnico extends StatefulWidget {
 class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
   @override
   Widget build(BuildContext context) {
-    var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
-    var boxform1 = Hive.box<Tecnicos>('tecnicos');
-    // print(
-    //    boxform1.values.where((element) => element.nome == widget.nomeCurrent));
-    // print(boxform1.values.toList());
-    var listas = boxform1.values.toList();
-    var mapaListas = listas.asMap();
-    var mapalistaselecionado = mapaListas[widget.id];
-    var mapalistaselecionadoCumprimento =
-        mapalistaselecionado!.atividadesAtribuidas!.length;
-    // Problema é achar as atividades que estão inseridas no nome_achado
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.nomeCurrent!),
-      ),
-      body: Container(
-        child: ValueListenableBuilder(
-          valueListenable: boxform,
-          builder: (context, Box<Tecnicos> boxform, _) {
-            if (boxform.values.isEmpty) {
-              return Center(
-                child: Text("No data available!",
-                    style: TextStyle(fontFamily: 'Montserrat')),
-              );
-            }
-            return ListView.builder(
-                itemCount: mapalistaselecionadoCumprimento,
-                itemBuilder: (context, index) {
-                  Tecnicos? tecnicoBox = boxform.getAt(index);
+    ValueListenable<Box<Tecnicos>> boxTecnicos =
+        Hive.box<Tecnicos>('tecnicos').listenable();
 
+    List<Tecnicos> lista = boxTecnicos.value.values.toList();
+    Tecnicos tecnico = lista[widget.id!];
+    List<Atividades>? atividadesTecnico = tecnico.atividadesAtribuidas;
+
+    if (atividadesTecnico == null) {
+      return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.nomeCurrent!),
+        ),
+        body: Center(
+          child: Text("Nenhuma atividade cadastrada!",
+              style: TextStyle(fontFamily: 'Montserrat')),
+        ),
+      );
+    }
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.nomeCurrent!),
+        ),
+        body: Container(
+            child: ListView.builder(
+                itemCount: atividadesTecnico.length,
+                itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(
-                      tecnicoBox!.nome!,
+                      tecnico.atividadesAtribuidas![index].nome.toString(),
                     ),
                     // Testando
                     trailing: InkWell(
@@ -56,10 +56,6 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
                       child: Text("Complete/Incomplete"),
                     ),
                   );
-                });
-          },
-        ),
-      ),
-    );
+                })));
   }
 }
