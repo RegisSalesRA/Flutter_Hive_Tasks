@@ -29,7 +29,6 @@ class _AdministradorPageState extends State<AdministradorPage> {
                 MaterialPageRoute(
                     builder: (context) => AtribuirAtividadeTecnico()),
               );
-           
             }),
         appBar: AppBar(
           centerTitle: true,
@@ -70,7 +69,6 @@ class _AdministradorPageState extends State<AdministradorPage> {
                         children: [
                           InkWell(
                             onTap: () {
-                             
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -97,11 +95,10 @@ class _AdministradorPageState extends State<AdministradorPage> {
                             ),
                           ),
                           SizedBox(
-                            width: 5,
+                            height: 5,
                           ),
                           InkWell(
                             onTap: () {
-                          
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

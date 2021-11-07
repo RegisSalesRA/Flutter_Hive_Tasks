@@ -15,8 +15,6 @@ class EscolherAtividade extends StatefulWidget {
 }
 
 class _EscolherAtividadeState extends State<EscolherAtividade> {
-
-  
   var boxAtividades = Hive.box<Atividades>('atividades').listenable();
   Box<Tecnicos> boxTecnicos = Hive.box<Tecnicos>('tecnicos');
 
@@ -68,7 +66,7 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
         onPressed: () {
           adicionarTarefa();
         },
-        child: Text("Texto"),
+        child: Text("Confirmar"),
       ),
       appBar: AppBar(
         centerTitle: true,
