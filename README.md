@@ -1,4 +1,4 @@
-# Django_Flutter_Tasks
+# Flutter_Tasks
 
 # flutter packages pub run build_runner build
 
