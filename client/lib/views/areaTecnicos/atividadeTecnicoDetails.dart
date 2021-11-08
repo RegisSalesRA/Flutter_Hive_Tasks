@@ -1,32 +1,26 @@
 import 'package:client/model/tecnicos_model.dart';
+import 'package:client/views/areaAdministrador/operacoesAtribuirAtividade/updateAtividadeTecnico.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../operacoesCrud/createTecnico.dart';
-import '../operacoesCrud/updateTecnico.dart';
 
-class TecnicosDetailPage extends StatefulWidget {
-  const TecnicosDetailPage({Key? key}) : super(key: key);
-
+class AtividadeTecnicoDetails extends StatefulWidget {
+  final formkey = GlobalKey<FormState>();
   @override
-  _TecnicosDetailPageState createState() => _TecnicosDetailPageState();
+  _AtividadeTecnicoDetailsState createState() =>
+      _AtividadeTecnicoDetailsState();
 }
 
-class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
+class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
   @override
   Widget build(BuildContext context) {
     var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => CreateTecnico()),
-            );
-          }),
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Lista de Técnicos"),
+        title: Text("Lista de Técnicos e atividades"),
       ),
       body: Container(
         child: ValueListenableBuilder(
@@ -48,22 +42,24 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
                   }
 
                   return ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UpdateTecnico(
-                                    id: index,
-                                    nomeCurrent: tecnicoBox!.nome!,
-                                  )));
-                    },
-                    onLongPress: () async {
-                      await box.deleteAt(index);
-                    },
-                    title: Text(tecnicoBox!.descricao!,
+                    title: Text(tecnicoBox!.nome!,
                         style:
                             TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
-                    subtitle: Text(tecnicoBox.nome!),
+                    trailing: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpDateAtividadeTecnico(
+                                    id: index,
+                                    nomeCurrent: tecnicoBox.nome!,
+                                    descricaoCurrent: tecnicoBox.descricao!,
+                                    
+                                  )),
+                        );
+                      },
+                      child: Text("Conferir atividades"),
+                    ),
                   );
                 });
           },

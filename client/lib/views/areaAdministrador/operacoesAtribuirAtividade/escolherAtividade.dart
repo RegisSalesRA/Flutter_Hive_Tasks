@@ -20,7 +20,7 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
 
   List<Atividades> listaAdicionadas = [];
 
-  // List<Atividades> listaJaAdicionadas = boxTecnicos.
+  //List<Atividades> listaJaAdicionadas = boxTecnicos.
 
   void adicionarTarefa() {
     final id = widget.id;

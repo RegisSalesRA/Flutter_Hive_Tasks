@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pageDetails/atividadeTecnicoDetails.dart';
+import 'areaTecnicos/atividadeTecnicoDetails.dart';
 
 class TecnicosPage extends StatefulWidget {
   const TecnicosPage({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _TecnicosPageState extends State<TecnicosPage> {
                         height: size.height / 5,
                       ),
                       InkWell(
-                        onTap: () { 
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(

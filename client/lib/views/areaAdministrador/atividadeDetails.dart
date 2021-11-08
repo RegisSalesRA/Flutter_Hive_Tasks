@@ -1,9 +1,8 @@
 import 'package:client/model/atividade_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import '../operacoesCrud/createAtividade.dart';
-import '../operacoesCrud/updateAtividade.dart';
+import 'crudAtividades/createAtividade.dart';
+import 'crudAtividades/updateAtividade.dart';
 
 class AtividadeDetailsPage extends StatefulWidget {
   const AtividadeDetailsPage({Key? key}) : super(key: key);

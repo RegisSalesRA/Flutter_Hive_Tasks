@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:client/model/tecnicos_model.dart';
 
-import 'escolherAtividade.dart';
+import 'operacoesAtribuirAtividade/escolherAtividade.dart';
 
 class AtribuirAtividadeTecnico extends StatefulWidget {
   final formkey = GlobalKey<FormState>();

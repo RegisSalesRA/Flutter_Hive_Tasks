@@ -1,6 +1,6 @@
-import 'package:client/views/pageshome/administrador.dart';
-import 'package:client/views/pageshome/tecnicos.dart';
 import 'package:flutter/material.dart';
+import 'administrador.dart';
+import 'tecnicos.dart';
 
 class Home extends StatefulWidget {
   @override

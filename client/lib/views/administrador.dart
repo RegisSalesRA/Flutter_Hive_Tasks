@@ -1,8 +1,8 @@
-import 'package:client/views/pageDetails/atividadeDetails.dart';
-import 'package:client/views/pageDetails/tecnicosDetails.dart';
+import 'package:client/views/areaAdministrador/atividadeDetails.dart';
+import 'package:client/views/areaAdministrador/tecnicosDetails.dart';
 import 'package:flutter/material.dart';
 
-import '../operacoesCrud/atribuirAtividadeTecnico.dart';
+import 'areaAdministrador/atribuirAtividadeDetails.dart';
 
 class AdministradorPage extends StatefulWidget {
   const AdministradorPage({Key? key}) : super(key: key);
