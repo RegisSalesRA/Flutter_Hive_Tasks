@@ -30,7 +30,7 @@ class _UpdateTecnicoState extends State<UpdateTecnico> {
       tecnicoBox.putAt(index!, tecnicoModel);
 
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Tecnico atualizado com sucesso!"));
+          .showSnackBar(snackbar("Tecnico atualizado com sucesso!",2));
       Navigator.of(context).pop();
     }
   }

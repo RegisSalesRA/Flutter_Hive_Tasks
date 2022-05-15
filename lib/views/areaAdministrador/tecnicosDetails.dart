@@ -1,4 +1,3 @@
- 
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';

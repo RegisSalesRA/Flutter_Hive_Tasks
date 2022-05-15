@@ -8,8 +8,14 @@ class EscolherAtividade extends StatefulWidget {
   final int? id;
   final String? nomeCurrent;
   final String? descricaoCurrent;
+  final List<Atividades>? listaAtividadesCurrent;
+
   const EscolherAtividade(
-      {Key? key, this.id, this.nomeCurrent, this.descricaoCurrent})
+      {Key? key,
+      this.id,
+      this.nomeCurrent,
+      this.descricaoCurrent,
+      this.listaAtividadesCurrent})
       : super(key: key);
   @override
   // ignore: library_private_types_in_public_api
@@ -18,16 +24,13 @@ class EscolherAtividade extends StatefulWidget {
 
 class _EscolherAtividadeState extends State<EscolherAtividade> {
   var boxAtividades = Hive.box<Atividades>('atividades').listenable();
-  Box<Tecnicos> boxTecnicos = Hive.box<Tecnicos>('tecnicos');
 
   List<Atividades> listaAdicionadas = [];
 
   void adicionarTarefa() {
     final id = widget.id;
-
-    List<Atividades> listaAdicionadas2 = [];
+    List<Atividades> listaAdicionadas2 = [...widget.listaAtividadesCurrent!];
     for (var iten in listaAdicionadas) {
-      iten.available = false;
       listaAdicionadas2.add(iten);
     }
 
@@ -42,17 +45,17 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
       tecnicoBox.putAt(id!, tecnicoModel);
 
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("A Atividade para ${tecnicoModel.nome}!"));
+          .showSnackBar(snackbar("A Atividade para ${tecnicoModel.nome}!", 2));
     } else {
       print("Não foi possível adicionar");
     }
   }
 
   void checarSeExiste(Atividades indexAtividade) {
-    if (listaAdicionadas.contains(indexAtividade))
+    if (listaAdicionadas.contains(indexAtividade)) {
       ScaffoldMessenger.of(context).showSnackBar(
-          snackbar("A Atividade ${indexAtividade.nome} já foi adicionada!"));
-    else {
+          snackbar("A Atividade ${indexAtividade.nome} já foi adicionada!", 2));
+    } else {
       listaAdicionadas.add(indexAtividade);
     }
     print(listaAdicionadas.length);
@@ -74,39 +77,53 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
       body: ValueListenableBuilder(
         valueListenable: boxAtividades,
         builder: (context, Box<Atividades?> atividadeBox, _) {
-          List<int> keys = [];
-
-          if (keys != []) {
-            keys = atividadeBox.keys
-                .cast<int>()
-                .where((key) => atividadeBox.get(key)!.available! == true)
-                .toList();
-          }
-
-          if (keys.isEmpty) {
+          if (atividadeBox.isEmpty) {
             return const Center(
               child: Text("No data available!",
                   style: TextStyle(fontFamily: 'Montserrat')),
             );
           }
 
-          keys = atividadeBox.keys
-              .cast<int>()
-              .where((key) => atividadeBox.get(key)!.available! == true)
-              .toList();
-
           return ListView.builder(
-              itemCount: keys.length,
+              itemCount: atividadeBox.length,
               itemBuilder: (context, index) {
-                final int key = keys[index];
-                final Atividades? atividadeFiltrada = atividadeBox.get(key);
-
+                List<Atividades?> atividadesListas =
+                    atividadeBox.values.toList();
                 return ListTile(
-                  title: Text(atividadeFiltrada!.nome!,
+                  title: Text(atividadesListas[index]!.nome.toString(),
                       style: const TextStyle(
                           fontSize: 20, fontFamily: 'Montserrat')),
-                  onLongPress: () {
-                    checarSeExiste(atividadeFiltrada);
+                  onLongPress: () async {
+                    checarSeExiste(atividadesListas[index]!);
+
+//                    await atividadeBox.deleteAt(index);
+
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Center(
+                            child: Text('Deseja adicionar a atividade?')),
+                        actions: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  atividadeBox.deleteAt(index);
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
                   },
                 );
               });

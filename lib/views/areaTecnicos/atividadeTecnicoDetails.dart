@@ -1,4 +1,3 @@
- 
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:flutter_hiver_tasks/views/areaAdministrador/operacoesAtribuirAtividade/updateAtividadeTecnico.dart';
@@ -55,7 +54,6 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                                     id: index,
                                     nomeCurrent: tecnicoBox.nome!,
                                     descricaoCurrent: tecnicoBox.descricao!,
-                                    
                                   )),
                         );
                       },

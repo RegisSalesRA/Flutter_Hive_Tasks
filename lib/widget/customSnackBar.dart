@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-snackbar(messeger) {
+snackbar(messeger, duration,) {
   return SnackBar(
-    duration: Duration(seconds: 2),
+  
+    duration: Duration(seconds: duration),
     content: Text(
       messeger,
       textAlign: TextAlign.center,

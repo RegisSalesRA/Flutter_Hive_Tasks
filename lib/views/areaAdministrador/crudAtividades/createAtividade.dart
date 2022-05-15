@@ -21,7 +21,7 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
       Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
       atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Atividade criada com sucesso!"));
+          .showSnackBar(snackbar("Atividade criada com sucesso!",2));
       Navigator.of(context).pop();
     }
   }

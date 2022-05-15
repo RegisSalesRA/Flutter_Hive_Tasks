@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
-import 'package:hive_flutter/hive_flutter.dart'; 
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'operacoesAtribuirAtividade/escolherAtividade.dart';
 
@@ -51,6 +51,8 @@ class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
                                         id: index,
                                         nomeCurrent: form.nome!,
                                         descricaoCurrent: form.descricao!,
+                                        listaAtividadesCurrent:
+                                            form.atividadesAtribuidas,
                                       )));
                         },
                         child: Text("Adicionar"),

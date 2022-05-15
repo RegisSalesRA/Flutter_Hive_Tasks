@@ -25,7 +25,7 @@ class _CreateTecnicoState extends State<CreateTecnico> {
         descricao: descricao,
       ));
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Tecnico atualizado com sucesso!"));
+          .showSnackBar(snackbar("Tecnico atualizado com sucesso!",2));
       Navigator.of(context).pop();
     }
   }
