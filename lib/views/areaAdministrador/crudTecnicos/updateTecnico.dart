@@ -1,6 +1,8 @@
-import 'package:client/model/tecnicos_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import '../../../widget/customSnackBar.dart';
 
 class UpdateTecnico extends StatefulWidget {
   final int? id;
@@ -26,6 +28,9 @@ class _UpdateTecnicoState extends State<UpdateTecnico> {
       );
       Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
       tecnicoBox.putAt(index!, tecnicoModel);
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(snackbar("Tecnico atualizado com sucesso!"));
       Navigator.of(context).pop();
     }
   }

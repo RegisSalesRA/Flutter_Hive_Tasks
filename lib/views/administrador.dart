@@ -1,6 +1,7 @@
-import 'package:client/views/areaAdministrador/atividadeDetails.dart';
-import 'package:client/views/areaAdministrador/tecnicosDetails.dart';
+ 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/views/areaAdministrador/atividadeDetails.dart';
+import 'package:flutter_hiver_tasks/views/areaAdministrador/tecnicosDetails.dart';
 
 import 'areaAdministrador/atribuirAtividadeDetails.dart';
 

@@ -1,6 +1,7 @@
-import 'package:client/model/tecnicos_model.dart';
-import 'package:client/views/areaAdministrador/operacoesAtribuirAtividade/updateAtividadeTecnico.dart';
+ 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
+import 'package:flutter_hiver_tasks/views/areaAdministrador/operacoesAtribuirAtividade/updateAtividadeTecnico.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class AtividadeTecnicoDetails extends StatefulWidget {

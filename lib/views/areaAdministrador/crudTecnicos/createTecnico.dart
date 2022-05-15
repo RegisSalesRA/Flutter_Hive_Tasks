@@ -1,7 +1,10 @@
-import 'package:client/model/atividade_model.dart';
-import 'package:client/model/tecnicos_model.dart';
+ 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/model/atividade_model.dart';
+import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import '../../../widget/customSnackBar.dart';
 
 class CreateTecnico extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
@@ -21,7 +24,8 @@ class _CreateTecnicoState extends State<CreateTecnico> {
         nome: nome,
         descricao: descricao,
       ));
-
+      ScaffoldMessenger.of(context)
+          .showSnackBar(snackbar("Tecnico atualizado com sucesso!"));
       Navigator.of(context).pop();
     }
   }

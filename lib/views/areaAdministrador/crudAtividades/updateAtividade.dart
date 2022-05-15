@@ -1,6 +1,8 @@
-import 'package:client/model/atividade_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import '../../../widget/customSnackBar.dart';
 
 class UpdateAtividade extends StatefulWidget {
   final int? id;
@@ -24,6 +26,9 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
           Atividades(nome: nome, isComplete: isComplete);
       Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
       atividadeBox.putAt(index!, atividadeModel);
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(snackbar("Atividade atualizada com sucesso!"));
       Navigator.of(context).pop();
     }
   }
@@ -73,7 +78,6 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
                         setState(() {
                           isComplete = valor!;
                         });
-                     
                       },
                     ),
                     Text(

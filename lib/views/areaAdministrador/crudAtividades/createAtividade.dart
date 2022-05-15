@@ -1,12 +1,16 @@
-import 'package:client/model/atividade_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../../../widget/customSnackBar.dart';
 
 class AdicionarAtividade extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
   @override
   _AdicionarAtividadeState createState() => _AdicionarAtividadeState();
 }
+
+
+
 
 class _AdicionarAtividadeState extends State<AdicionarAtividade> {
   String nome = "";
@@ -16,6 +20,8 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
     if (widget.formkey.currentState!.validate()) {
       Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
       atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(snackbar("Atividade criada com sucesso!"));
       Navigator.of(context).pop();
     }
   }
@@ -65,11 +71,8 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
                         setState(() {
                           isComplete = valor!;
                         });
-                      
                       },
                     ),
-                 
-                 
                   ]),
                   SizedBox(
                     height: 55,

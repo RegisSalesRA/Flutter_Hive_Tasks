@@ -19,7 +19,8 @@ class AtividadesAdapter extends TypeAdapter<Atividades> {
     return Atividades(
       nome: fields[0] as String?,
       isComplete: fields[1] == null ? false : fields[1] as bool?,
-    )..available = fields[2] == null ? false : fields[2] as bool?;
+      available: fields[2] == null ? true : fields[2] as bool?,
+    );
   }
 
   @override

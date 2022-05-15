@@ -1,7 +1,7 @@
-import 'package:client/model/atividade_model.dart';
-import 'package:client/views/home.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter_hiver_tasks/model/atividade_model.dart';
+import 'package:flutter_hiver_tasks/views/home.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'model/tecnicos_model.dart';

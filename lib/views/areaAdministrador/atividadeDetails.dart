@@ -1,5 +1,6 @@
-import 'package:client/model/atividade_model.dart';
+ 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'crudAtividades/createAtividade.dart';
 import 'crudAtividades/updateAtividade.dart';
