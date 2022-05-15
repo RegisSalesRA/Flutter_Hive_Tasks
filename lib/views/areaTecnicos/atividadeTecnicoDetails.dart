@@ -8,7 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 class AtividadeTecnicoDetails extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
 
-   AtividadeTecnicoDetails({Key? key}) : super(key: key);
+  AtividadeTecnicoDetails({Key? key}) : super(key: key);
   @override
   _AtividadeTecnicoDetailsState createState() =>
       _AtividadeTecnicoDetailsState();
@@ -46,8 +46,8 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
 
                 return ListTile(
                   title: Text(tecnicoBox!.nome!,
-                      style:
-                          const TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
+                      style: const TextStyle(
+                          fontSize: 20, fontFamily: 'Montserrat')),
                   trailing: InkWell(
                     onTap: () {
                       Navigator.push(

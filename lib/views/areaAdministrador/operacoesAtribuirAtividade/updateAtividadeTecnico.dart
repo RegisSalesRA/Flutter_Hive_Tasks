@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
+// ignore_for_file: file_names, library_private_types_in_public_api, unnecessary_null_comparison
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +22,11 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
   Widget build(BuildContext context) {
     ValueListenable<Box<Tecnicos>> boxTecnicos =
         Hive.box<Tecnicos>('tecnicos').listenable();
+    List<dynamic> tenso = [1, 2, 4, 5];
 
     List<Tecnicos> lista = boxTecnicos.value.values.toList();
     Tecnicos tecnico = lista[widget.id!];
-    List<Atividades>? atividadesTecnico = tecnico.atividadesAtribuidas;
+    List<Atividades?> atividadesTecnico = tecnico.atividadesAtribuidas!;
 
     if (atividadesTecnico == null) {
       return Scaffold(
@@ -53,8 +54,19 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
                 ),
                 // Testando
                 trailing: InkWell(
-                  onTap: () {},
-                  child: const Text("Complete/Incomplete"),
+                  onTap: () {
+                    setState(() {
+                      atividadesTecnico[index]!.isComplete =
+                          !atividadesTecnico[index]!.isComplete!;
+                    });
+                    print(tecnico.atividadesAtribuidas![index].nome);
+                  },
+                  child: Icon(
+                    tecnico.atividadesAtribuidas![index].isComplete == true
+                        ? Icons.check_box
+                        : Icons.check_box_outline_blank,
+                    color: Colors.blue,
+                  ),
                 ),
               );
             }));

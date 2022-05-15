@@ -30,7 +30,7 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
       atividadeBox.putAt(index!, atividadeModel);
 
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Atividade atualizada com sucesso!",2));
+          .showSnackBar(snackbar("Atividade atualizada com sucesso!", 2));
       Navigator.of(context).pop();
     }
   }
