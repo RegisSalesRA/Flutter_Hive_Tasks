@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -39,15 +41,15 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.nomeCurrent!,
-            style: TextStyle(fontFamily: 'Montserrat')),
+            style: const TextStyle(fontFamily: 'Montserrat')),
       ),
       body: Form(
           key: widget.formkey,
           child: Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: ListView(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   TextFormField(
@@ -57,17 +59,17 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(hintText: 'Title'),
+                    decoration: const InputDecoration(hintText: 'Title'),
                     onChanged: (value) {
                       setState(() {
                         nome = value;
                       });
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -80,17 +82,17 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
                         });
                       },
                     ),
-                    Text(
+                    const Text(
                       'is completed?',
                       style:
                           TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                     ),
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: submitData, child: Text('Submit Data')),
+                      onPressed: submitData, child: const Text('Submit Data')),
                 ],
               ))),
     );

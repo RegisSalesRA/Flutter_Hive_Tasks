@@ -1,4 +1,5 @@
- 
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
@@ -8,6 +9,8 @@ import '../../../widget/customSnackBar.dart';
 
 class CreateTecnico extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
+
+   CreateTecnico({Key? key}) : super(key: key);
   @override
   _CreateTecnicoState createState() => _CreateTecnicoState();
 }
@@ -35,16 +38,16 @@ class _CreateTecnicoState extends State<CreateTecnico> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Criar de Tecnicos",
+        title: const Text("Criar de Tecnicos",
             style: TextStyle(fontFamily: 'Montserrat')),
       ),
       body: Form(
           key: widget.formkey,
           child: Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: ListView(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   TextFormField(
@@ -54,14 +57,14 @@ class _CreateTecnicoState extends State<CreateTecnico> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(hintText: 'Title'),
+                    decoration: const InputDecoration(hintText: 'Title'),
                     onChanged: (value) {
                       setState(() {
                         nome = value;
                       });
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   TextFormField(
@@ -71,18 +74,18 @@ class _CreateTecnicoState extends State<CreateTecnico> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(hintText: 'Descricao'),
+                    decoration: const InputDecoration(hintText: 'Descricao'),
                     onChanged: (value) {
                       setState(() {
                         descricao = value;
                       });
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: adicionarTecnico, child: Text('Submit Data')),
+                      onPressed: adicionarTecnico, child: const Text('Submit Data')),
                 ],
               ))),
     );

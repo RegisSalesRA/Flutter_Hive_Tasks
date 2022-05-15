@@ -1,4 +1,4 @@
- 
+// ignore_for_file: file_names, library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -20,7 +20,7 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
          
           Navigator.of(context).push(
@@ -30,42 +30,40 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Lista de Atividades"),
+        title: const Text("Lista de Atividades"),
       ),
-      body: Container(
-        child: ValueListenableBuilder(
-          valueListenable: boxform,
-          builder: (context, Box<Atividades> box, _) {
-            if (box.values.isEmpty) {
-              return Center(
-                child: Text("No data available!",
-                    style: TextStyle(fontFamily: 'Montserrat')),
-              );
-            }
-            return ListView.builder(
-                itemCount: box.length,
-                itemBuilder: (context, index) {
-                  Atividades? form = box.getAt(index);
+      body: ValueListenableBuilder(
+        valueListenable: boxform,
+        builder: (context, Box<Atividades> box, _) {
+          if (box.values.isEmpty) {
+            return const Center(
+              child: Text("No data available!",
+                  style: TextStyle(fontFamily: 'Montserrat')),
+            );
+          }
+          return ListView.builder(
+              itemCount: box.length,
+              itemBuilder: (context, index) {
+                Atividades? form = box.getAt(index);
 
-                  return ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UpdateAtividade(
-                                      id: index,
-                                      nomeCurrent: form!.nome!,
-                                    )));
-                      },
-                      onLongPress: () async {
-                        await box.deleteAt(index);
-                      },
-                      title: Text(form!.nome!,
-                          style: TextStyle(
-                              fontSize: 20, fontFamily: 'Montserrat')));
-                });
-          },
-        ),
+                return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateAtividade(
+                                    id: index,
+                                    nomeCurrent: form!.nome!,
+                                  )));
+                    },
+                    onLongPress: () async {
+                      await box.deleteAt(index);
+                    },
+                    title: Text(form!.nome!,
+                        style: const TextStyle(
+                            fontSize: 20, fontFamily: 'Montserrat')));
+              });
+        },
       ),
     );
   }

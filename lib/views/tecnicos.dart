@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 import 'areaTecnicos/atividadeTecnicoDetails.dart';
@@ -16,19 +18,19 @@ class _TecnicosPageState extends State<TecnicosPage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Técnicos Page"),
+          title: const Text("Técnicos Page"),
         ),
         body: Container(
             width: size.width,
-            decoration: BoxDecoration(color: Colors.blue),
+            decoration: const BoxDecoration(color: Colors.blue),
             child: Padding(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
-                      Text(
+                      const Text(
                         "Bem-vindo Sr.técnico",
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
@@ -44,16 +46,16 @@ class _TecnicosPageState extends State<TecnicosPage> {
                                       AtividadeTecnicoDetails()));
                         },
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.blueAccent,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0))),
                           height: size.height / 4,
                           width: size.width,
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "Atividade dos Técnicos",
-                              style: const TextStyle(
+                              style: TextStyle(
                                   decoration: TextDecoration.none,
                                   color: Colors.white,
                                   fontSize: 30),

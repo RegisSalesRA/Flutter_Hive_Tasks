@@ -18,12 +18,14 @@ Future main() async {
   Hive.registerAdapter(TecnicosAdapter());
   await Hive.openBox<Tecnicos>('tecnicos');
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Home());
+    return const MaterialApp(debugShowCheckedModeBanner: false, home: Home());
   }
 }

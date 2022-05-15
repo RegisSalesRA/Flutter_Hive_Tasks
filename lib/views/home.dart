@@ -1,8 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'administrador.dart';
 import 'tecnicos.dart';
 
 class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -14,34 +18,33 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Home Page"),
+        title: const Text("Home Page"),
       ),
       body: Container(
-          decoration: BoxDecoration(color: Colors.blue),
+          decoration: const BoxDecoration(color: Colors.blue),
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
                   onTap: () {
-                   
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AdministradorPage()),
+                          builder: (context) => const AdministradorPage()),
                     );
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.blueAccent,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     height: size.height / 4,
                     width: size.width,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Área Administradores",
-                        style: const TextStyle(
+                        style: TextStyle(
                             decoration: TextDecoration.none,
                             color: Colors.white,
                             fontSize: 30),
@@ -51,22 +54,22 @@ class _HomeState extends State<Home> {
                 ),
                 InkWell(
                   onTap: () {
-                 
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => TecnicosPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const TecnicosPage()),
                     );
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.blueAccent,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     height: size.height / 4,
                     width: size.width,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Área dos técnicos",
-                        style: const TextStyle(
+                        style: TextStyle(
                             decoration: TextDecoration.none,
                             color: Colors.white,
                             fontSize: 30),

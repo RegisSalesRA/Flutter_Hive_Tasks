@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -18,7 +20,7 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => CreateTecnico()),
@@ -26,48 +28,46 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
           }),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Lista de Técnicos"),
+        title: const Text("Lista de Técnicos"),
       ),
-      body: Container(
-        child: ValueListenableBuilder(
-          valueListenable: boxform,
-          builder: (context, Box<Tecnicos> box, _) {
-            if (box.values.isEmpty) {
-              return Center(
-                child: Text("No data available!",
-                    style: TextStyle(fontFamily: 'Montserrat')),
-              );
-            }
-            return ListView.builder(
-                itemCount: box.length,
-                itemBuilder: (context, index) {
-                  Tecnicos? tecnicoBox = box.getAt(index);
-                  var itens = [];
-                  if (tecnicoBox != null) {
-                    itens.add(tecnicoBox.atividadesAtribuidas);
-                  }
+      body: ValueListenableBuilder(
+        valueListenable: boxform,
+        builder: (context, Box<Tecnicos> box, _) {
+          if (box.values.isEmpty) {
+            return const Center(
+              child: Text("No data available!",
+                  style: TextStyle(fontFamily: 'Montserrat')),
+            );
+          }
+          return ListView.builder(
+              itemCount: box.length,
+              itemBuilder: (context, index) {
+                Tecnicos? tecnicoBox = box.getAt(index);
+                var itens = [];
+                if (tecnicoBox != null) {
+                  itens.add(tecnicoBox.atividadesAtribuidas);
+                }
 
-                  return ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UpdateTecnico(
-                                    id: index,
-                                    nomeCurrent: tecnicoBox!.nome!,
-                                  )));
-                    },
-                    onLongPress: () async {
-                      await box.deleteAt(index);
-                    },
-                    title: Text(tecnicoBox!.descricao!,
-                        style:
-                            TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
-                    subtitle: Text(tecnicoBox.nome!),
-                  );
-                });
-          },
-        ),
+                return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UpdateTecnico(
+                                  id: index,
+                                  nomeCurrent: tecnicoBox!.nome!,
+                                )));
+                  },
+                  onLongPress: () async {
+                    await box.deleteAt(index);
+                  },
+                  title: Text(tecnicoBox!.descricao!,
+                      style:
+                          const TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
+                  subtitle: Text(tecnicoBox.nome!),
+                );
+              });
+        },
       ),
     );
   }

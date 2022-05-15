@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -6,6 +8,8 @@ import 'operacoesAtribuirAtividade/escolherAtividade.dart';
 
 class AtribuirAtividadeTecnico extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
+
+  AtribuirAtividadeTecnico({Key? key}) : super(key: key);
 
   @override
   _AtribuirAtividadeTecnicoState createState() =>
@@ -23,13 +27,13 @@ class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Atribuir Atividade"),
+          title: const Text("Atribuir Atividade"),
         ),
         body: ValueListenableBuilder(
             valueListenable: boxform,
             builder: (context, Box<Tecnicos> box, _) {
               if (box.values.isEmpty) {
-                return Center(
+                return const Center(
                   child: Text("No data available!",
                       style: TextStyle(fontFamily: 'Montserrat')),
                 );
@@ -40,7 +44,7 @@ class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
                     Tecnicos? form = box.getAt(index);
                     return ListTile(
                       title: Text(form!.nome!,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontFamily: 'Montserrat')),
                       trailing: InkWell(
                         onTap: () {
@@ -55,7 +59,7 @@ class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
                                             form.atividadesAtribuidas,
                                       )));
                         },
-                        child: Text("Adicionar"),
+                        child: const Text("Adicionar"),
                       ),
                     );
                   });
