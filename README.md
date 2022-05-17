@@ -14,8 +14,6 @@ Third Step: Create new box or update a box:
     flutter packages pub run build_runner build;
 
 
-#  Fast View from Project
- 
 
 # Layout Home
 <img src="/assets/hive_task_1.png" >
