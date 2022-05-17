@@ -31,9 +31,21 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
 
   void adicionarTarefa() {
     final id = widget.id;
-    List<Atividades> listaAdicionadas2 = [...widget.listaAtividadesCurrent!];
-    for (var iten in listaAdicionadas) {
-      listaAdicionadas2.add(iten);
+
+    List<Atividades> listaAdicionadas2 = [];
+
+    if (widget.listaAtividadesCurrent != null ||
+        widget.listaAtividadesCurrent!.isEmpty) {
+      print(widget.listaAtividadesCurrent);
+
+      for (var iten in listaAdicionadas) {
+        listaAdicionadas2.add(iten);
+      }
+    } else {
+      List<Atividades> listaAdicionadas2 = [...widget.listaAtividadesCurrent!];
+      for (var iten in listaAdicionadas) {
+        listaAdicionadas2.add(iten);
+      }
     }
 
     if (listaAdicionadas2 != []) {
