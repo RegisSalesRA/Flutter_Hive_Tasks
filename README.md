@@ -1,8 +1,5 @@
 # Flutter Hive Tasks
 
-Follow Steps:
-
-# Flutter
 
 First Step:
 
@@ -20,9 +17,11 @@ Third Step: Create new box or update a box:
 #  Fast View from Project
  
 
-# Home
-<img src="/assets/home.png" >
+# Layout Home
+<img src="/assets/hive_task_1.png" >
 
-# Layout Form
-<img src="assets/form.png" >
- 
+# Layout Atividade 
+<img src="assets/hive_task_2.png" >
+
+# Layout Atividade Tecnico View
+<img src="assets/hive_task_3.png" >
