@@ -35,7 +35,7 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
     List<Atividades> listaAdicionadas2 = [];
 
     if (widget.listaAtividadesCurrent != null ||
-        widget.listaAtividadesCurrent!.isEmpty) {
+        widget.listaAtividadesCurrent != []) {
       print(widget.listaAtividadesCurrent);
 
       for (var iten in listaAdicionadas) {

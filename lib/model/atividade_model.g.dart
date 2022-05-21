@@ -19,20 +19,17 @@ class AtividadesAdapter extends TypeAdapter<Atividades> {
     return Atividades(
       nome: fields[0] as String?,
       isComplete: fields[1] == null ? false : fields[1] as bool?,
-      available: fields[2] == null ? true : fields[2] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Atividades obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.nome)
       ..writeByte(1)
-      ..write(obj.isComplete)
-      ..writeByte(2)
-      ..write(obj.available);
+      ..write(obj.isComplete);
   }
 
   @override

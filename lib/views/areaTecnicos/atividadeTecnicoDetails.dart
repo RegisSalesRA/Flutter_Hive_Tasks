@@ -48,20 +48,22 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                   title: Text(tecnicoBox!.nome!,
                       style: const TextStyle(
                           fontSize: 20, fontFamily: 'Montserrat')),
-                  trailing: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UpDateAtividadeTecnico(
-                                  id: index,
-                                  nomeCurrent: tecnicoBox.nome!,
-                                  descricaoCurrent: tecnicoBox.descricao!,
-                                )),
-                      );
-                    },
-                    child: const Text("Conferir atividades"),
-                  ),
+                  trailing: tecnicoBox.atividadesAtribuidas != null
+                      ? InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UpDateAtividadeTecnico(
+                                        id: index,
+                                        nomeCurrent: tecnicoBox.nome!,
+                                        descricaoCurrent: tecnicoBox.descricao!,
+                                      )),
+                            );
+                          },
+                          child: const Text("Conferir atividades"),
+                        )
+                      : Text("Nenhuma atividade"),
                 );
               });
         },

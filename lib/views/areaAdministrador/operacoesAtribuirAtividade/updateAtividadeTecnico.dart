@@ -22,7 +22,6 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
   Widget build(BuildContext context) {
     ValueListenable<Box<Tecnicos>> boxTecnicos =
         Hive.box<Tecnicos>('tecnicos').listenable();
-    List<dynamic> tenso = [1, 2, 4, 5];
 
     List<Tecnicos> lista = boxTecnicos.value.values.toList();
     Tecnicos tecnico = lista[widget.id!];
@@ -43,7 +42,7 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(widget.nomeCurrent!),
+          title: Text("Tecnico ${widget.nomeCurrent!}"),
         ),
         body: ListView.builder(
             itemCount: atividadesTecnico.length,
@@ -55,11 +54,11 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
                 // Testando
                 trailing: InkWell(
                   onTap: () {
+                    print(tecnico.atividadesAtribuidas![index].nome);
                     setState(() {
                       atividadesTecnico[index]!.isComplete =
                           !atividadesTecnico[index]!.isComplete!;
                     });
-                    print(tecnico.atividadesAtribuidas![index].nome);
                   },
                   child: Icon(
                     tecnico.atividadesAtribuidas![index].isComplete == true
