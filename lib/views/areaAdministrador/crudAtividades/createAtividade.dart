@@ -65,20 +65,9 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Checkbox(
-                      value: isComplete,
-                      activeColor: Colors.orange,
-                      onChanged: (bool? valor) {
-                        setState(() {
-                          isComplete = valor!;
-                        });
-                      },
-                    ),
-                  ]),
-                  const SizedBox(
-                    height: 55,
-                  ),
+            
+            
+            
                   ElevatedButton(
                       onPressed: adicioniarAtividade,
                       child: const Text('Submit Data')),

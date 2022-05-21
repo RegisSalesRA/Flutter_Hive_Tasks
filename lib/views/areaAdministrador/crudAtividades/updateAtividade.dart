@@ -69,25 +69,8 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
                   const SizedBox(
                     height: 15,
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Checkbox(
-                      value: isComplete,
-                      activeColor: Colors.orange,
-                      onChanged: (bool? valor) {
-                        setState(() {
-                          isComplete = valor!;
-                        });
-                      },
-                    ),
-                    const Text(
-                      'is completed?',
-                      style:
-                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                    ),
-                  ]),
+              
+              
                   const SizedBox(
                     height: 55,
                   ),

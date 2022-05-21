@@ -12,6 +12,6 @@ class Atividades extends HiveObject {
   @HiveField(2, defaultValue: true)
   bool? available;
 
-  @HiveField(3, defaultValue: true)
-  Atividades({this.nome, this.isComplete, this.available});
+
+  Atividades({this.nome, this.isComplete});
 }
