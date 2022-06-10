@@ -49,7 +49,22 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.1.0
   hive_generator: ^1.0.1  
+  flutter_native_splash: ^1.2.0
+  flutter_launcher_icons: ^0.9.1
+ 
 
+flutter_icons:
+  image_path: "assets/launcher/icon.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_foreground: "assets/launcher/icon.png"
+
+
+flutter_native_splash:
+  color: "#0088ff"
+  image: assets/splash/splash.png #u must place logo.png in your assets folder
+  android: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
