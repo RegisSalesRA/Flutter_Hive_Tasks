@@ -24,7 +24,7 @@ Decidi realizar esse desafio de fazer um aplicativo com hive para tester e mostr
 
 <h2>Screenshots</h2>
 
-<img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/logo.png" width="250"> <img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/home.png" width="250"> <img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/form.png" width="250"> 
+<img src="https://github.com/RegisSalesRA/Flutter_Hive_Tasks/blob/master/assets/readme/splash.png" width="250"> <img src="https://github.com/RegisSalesRA/Flutter_Hive_Tasks/blob/master/assets/readme/home.png" width="250"> <img src="https://github.com/RegisSalesRA/Flutter_Hive_Tasks/blob/master/assets/readme/tecnicoPage.png" width="250"> 
 
 <p>
 </p>
