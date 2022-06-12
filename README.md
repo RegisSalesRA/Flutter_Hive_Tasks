@@ -1,25 +1,77 @@
+<img src="https://img.shields.io/badge/Version-2.0.0-blue"> 
+
 # Flutter Hive Tasks
 
+Dados persistentes nativos
 
-First Step:
+<h2>Índice 📋</h2>
 
-    flutter packages get
-        
-Second Step:
+   <p>
 
-    flutter run
+   - [📖 Sobre o App](#Sobre-o-App)
+   - [📱 Screenshots](#Screenshots)
+   - [👨🏽‍💻 Desenvolvimento](#Sobre-o-desenvolvimento)
+   - [📲 Como Utilizar](#Como-Utilizar)
+   - [🛠 Ferramentas](#Ferramentas-utilizadas)
 
-Third Step: Create new box or update a box:
+   </p>
 
-    flutter packages pub run build_runner build;
+<h2>Sobre o App</h2>
+
+<p>
+Decidi realizar esse desafio de fazer um aplicativo com hive para tester e mostrar conhecimentos novos
+</p>
+
+<h2>Screenshots</h2>
+
+<img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/logo.png" width="250"> <img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/home.png" width="250"> <img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/form.png" width="250"> 
+
+<p>
+</p>
+
+<h2>Sobre o desenvolvimento</h2>
+<p>
+Desenvolvimento focado em mostrar o funcionamento da ferramenta hive em uma lógica de programação com atividades atribuidas por administradores para os técnicos.
+</p>
 
 
+<h2>Como Utilizar</h2>
+<p>
 
-# Layout Home
-<img src="/assets/hive_task_1.png" >
+```
 
-# Layout Atividade 
-<img src="assets/hive_task_2.png" >
+- Clone o repositório:
+$ git clone git@github.com:RegisSalesRA/Flutter_Hive_Tasks.git
 
-# Layout Atividade Tecnico View
-<img src="assets/hive_task_3.png" >
+- Entre no diretório:
+$ cd flutter_hive_tasks
+
+- Instale as dependências:
+$ flutter pub get / flutter packages get
+
+- Execute:
+$ flutter run
+
+```
+
+</p>
+ 
+<p>
+<h2>Packages utilizadas</h2>
+<p>
+
+-  hive: ^2.0.4
+-  hive_flutter: ^1.0.0    
+
+</br>
+
+<p align="center">
+<h3 align="center">👇 Dúvida, Crítica, Elogio ou Sugestão👇</h3> 
+  </p>
+  <p align="center">
+  <a href="https://www.linkedin.com/in/regisrommel/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank">
+  </a> 
+</p>
+<p align="center">
+ Estudar é fundamental para um bom futuro, estudar e praticar é a chave do SUCESSO!
+</p>
