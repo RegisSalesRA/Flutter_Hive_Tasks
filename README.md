@@ -12,7 +12,7 @@ Dados persistentes nativos
    - [📱 Screenshots](#Screenshots)
    - [👨🏽‍💻 Desenvolvimento](#Sobre-o-desenvolvimento)
    - [📲 Como Utilizar](#Como-Utilizar)
-   - [🛠 Ferramentas](#Ferramentas-utilizadas)
+   - [🛠 Ferramentas](#Packages-utilizadas)
 
    </p>
 
