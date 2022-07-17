@@ -62,7 +62,7 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 300,
                           child: Text(tecnicoBox!.nome!,
                               style: TextStyle(

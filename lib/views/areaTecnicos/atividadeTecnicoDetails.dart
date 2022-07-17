@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:flutter_hiver_tasks/views/areaAdministrador/operacoesAtribuirAtividade/updateAtividadeTecnico.dart';
 import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
@@ -40,29 +41,73 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                   itens.add(tecnicoBox.atividadesAtribuidas);
                 }
 
-                return ListTile(
-                  title: Text(tecnicoBox!.nome!,
-                      style: const TextStyle(
-                          fontSize: 20, fontFamily: 'Montserrat')),
-                  trailing: tecnicoBox.atividadesAtribuidas != null
-                      ? InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => UpDateAtividadeTecnico(
-                                        id: index,
-                                        nomeCurrent: tecnicoBox.nome!,
-                                      )),
-                            );
-                          },
-                          child: const Text("Conferir atividades"),
+                return Container(
+                    height: 50,
+                    margin: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: CustomColors.backgroundCards,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 2.0,
+                          spreadRadius: 0.0,
+                          offset: Offset(2.0, 2.0),
                         )
-                      : const Text("Nenhuma atividade"),
-                );
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(tecnicoBox!.nome!,
+                            style: const TextStyle(
+                                fontSize: 20, fontFamily: 'Montserrat')),
+                        tecnicoBox.atividadesAtribuidas != null
+                            ? InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpDateAtividadeTecnico(
+                                              id: index,
+                                              nomeCurrent: tecnicoBox.nome!,
+                                            )),
+                                  );
+                                },
+                                child: const Text("Conferir atividades"),
+                              )
+                            : const Text("Nenhuma atividade"),
+                      ],
+                    ));
               });
         },
       ),
     );
   }
 }
+
+/*
+Text(tecnicoBox!.nome!,
+                        style: const TextStyle(
+                            fontSize: 20, fontFamily: 'Montserrat')),
+                    trailing: tecnicoBox.atividadesAtribuidas != null
+                        ? InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        UpDateAtividadeTecnico(
+                                          id: index,
+                                          nomeCurrent: tecnicoBox.nome!,
+                                        )),
+                              );
+                            },
+                            child: const Text("Conferir atividades"),
+                          )
+                        : const Text("Nenhuma atividade"),
+                  ),
+
+                  */

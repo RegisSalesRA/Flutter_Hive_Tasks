@@ -102,8 +102,6 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
                   onLongPress: () async {
                     checarSeExiste(atividadesListas[index]!);
 
-//                    await atividadeBox.deleteAt(index);
-
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,25 +39,53 @@ class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
               return ListView.builder(
                   itemCount: box.length,
                   itemBuilder: (context, index) {
-                    Tecnicos? form = box.getAt(index);
-                    return ListTile(
-                      title: Text(form!.nome!,
-                          style: const TextStyle(
-                              fontSize: 20, fontFamily: 'Montserrat')),
-                      trailing: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EscolherAtividade(
-                                        id: index,
-                                        nomeCurrent: form.nome!,
-                                        listaAtividadesCurrent:
-                                            form.atividadesAtribuidas,
-                                      )));
-                        },
-                        child: const Text("Adicionar"),
+                    Tecnicos? atribuirAtividade = box.getAt(index);
+                    return Container(
+                      height: 50,
+                      margin: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: CustomColors.backgroundCards,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 2.0,
+                            spreadRadius: 0.0,
+                            offset: Offset(2.0, 2.0),
+                          )
+                        ],
                       ),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              width: 300,
+                              child: Text(atribuirAtividade!.nome!,
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 20,
+                                      fontFamily: 'Montserrat')),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EscolherAtividade(
+                                              id: index,
+                                              nomeCurrent:
+                                                  atribuirAtividade.nome!,
+                                              listaAtividadesCurrent:
+                                                  atribuirAtividade
+                                                      .atividadesAtribuidas,
+                                            )));
+                              },
+                              child: const Text("Adicionar",
+                                  style: TextStyle(
+                                      fontSize: 15, fontFamily: 'Montserrat')),
+                            ),
+                          ]),
                     );
                   });
             }));
