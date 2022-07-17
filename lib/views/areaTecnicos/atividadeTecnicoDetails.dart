@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
 import 'package:flutter_hiver_tasks/views/areaAdministrador/operacoesAtribuirAtividade/updateAtividadeTecnico.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class AtividadeTecnicoDetails extends StatefulWidget {
@@ -20,12 +21,7 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
     var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
 
     return Scaffold(
-      floatingActionButton:
-          FloatingActionButton(child: const Icon(Icons.add), onPressed: () {}),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Lista de Técnicos e atividades"),
-      ),
+      appBar: MyAppBar(title: "Lista de Técnicos e atividades"),
       body: ValueListenableBuilder(
         valueListenable: boxform,
         builder: (context, Box<Tecnicos> box, _) {
@@ -63,7 +59,7 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                           },
                           child: const Text("Conferir atividades"),
                         )
-                      : Text("Nenhuma atividade"),
+                      : const Text("Nenhuma atividade"),
                 );
               });
         },

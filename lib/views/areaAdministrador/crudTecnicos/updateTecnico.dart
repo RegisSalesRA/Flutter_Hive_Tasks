@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../widget/customSnackBar.dart';
@@ -32,7 +33,7 @@ class _UpdateTecnicoState extends State<UpdateTecnico> {
       tecnicoBox.putAt(index!, tecnicoModel);
 
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Tecnico atualizado com sucesso!",2));
+          .showSnackBar(snackbar("Tecnico atualizado com sucesso!", 2));
       Navigator.of(context).pop();
     }
   }
@@ -40,10 +41,8 @@ class _UpdateTecnicoState extends State<UpdateTecnico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.nomeCurrent!,
-            style: const TextStyle(fontFamily: 'Montserrat')),
+      appBar: MyAppBar(
+        title: widget.nomeCurrent!,
       ),
       body: Form(
           key: widget.formkey,

@@ -1,8 +1,9 @@
- 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/views/areaAdministrador/atividadeDetails.dart';
 import 'package:flutter_hiver_tasks/views/areaAdministrador/tecnicosDetails.dart';
 
+import '../widget/customAppBar.dart';
 import 'areaAdministrador/atribuirAtividadeDetails.dart';
 
 class AdministradorPage extends StatefulWidget {
@@ -18,12 +19,15 @@ class _AdministradorPageState extends State<AdministradorPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+
+/*
+
         floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.blueAccent,
             child: const Icon(
               Icons.add,
               size: 30,
-              color: Colors.white,
+              color: CustomColors.textColor,
             ),
             onPressed: () {
               Navigator.push(
@@ -32,41 +36,53 @@ class _AdministradorPageState extends State<AdministradorPage> {
                     builder: (context) => AtribuirAtividadeTecnico()),
               );
             }),
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Administrador Page"),
+
+*/
+        appBar: MyAppBar(
+          title: "Administrador Page",
         ),
-        body: Container(
-            width: size.width,
-            decoration: const BoxDecoration(color: Colors.blue),
-            child: Padding(
-              padding: const EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Text(
-                        "Bem-vindo Sr.adminstrador",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      SizedBox(
-                        height: size.height / 15,
-                      ),
-                      const Text("Para conferir os itens arraste para o lado!",
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
-                      SizedBox(
-                        height: size.height / 25,
-                      ),
-                      const Text(
-                          "Clique no botão abaixo para adicionar tarefa ao técnico!",
-                          style: TextStyle(color: Colors.white, fontSize: 15)),
-                    ],
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+        body: SingleChildScrollView(
+          child: Container(
+              width: size.width,
+              height: size.height,
+              decoration: const BoxDecoration(color: CustomColors.background),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text(
+                          "Bem-vindo Sr.adminstrador",
+                          style: TextStyle(
+                              color: CustomColors.textColor, fontSize: 20),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Container(
+                          
+                          color: Colors.yellow,
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          AtribuirAtividadeTecnico()),
+                                );
+                              },
+                              child: const Text(
+                                "Clique aqui para atribuir atividade",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
+                              )),
+                        )
+                      ],
+                    ),
+                    Column(
                       children: [
                         InkWell(
                           onTap: () {
@@ -79,7 +95,7 @@ class _AdministradorPageState extends State<AdministradorPage> {
                           },
                           child: Container(
                             decoration: const BoxDecoration(
-                                color: Colors.blueAccent,
+                                color: CustomColors.backgroundCards,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0))),
                             height: size.height / 4,
@@ -89,7 +105,7 @@ class _AdministradorPageState extends State<AdministradorPage> {
                                 "Atividades",
                                 style: TextStyle(
                                     decoration: TextDecoration.none,
-                                    color: Colors.white,
+                                    color: CustomColors.textColor,
                                     fontSize: 30),
                               ),
                             ),
@@ -103,12 +119,13 @@ class _AdministradorPageState extends State<AdministradorPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const TecnicosDetailPage()),
+                                  builder: (context) =>
+                                      const TecnicosDetailPage()),
                             );
                           },
                           child: Container(
                             decoration: const BoxDecoration(
-                                color: Colors.blueAccent,
+                                color: CustomColors.backgroundCards,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0))),
                             height: size.height / 4,
@@ -118,17 +135,17 @@ class _AdministradorPageState extends State<AdministradorPage> {
                                 "Tecnicos",
                                 style: TextStyle(
                                     decoration: TextDecoration.none,
-                                    color: Colors.white,
+                                    color: CustomColors.textColor,
                                     fontSize: 30),
                               ),
                             ),
                           ),
                         ),
                       ],
-                    ),
-                  )
-                ],
-              ),
-            )));
+                    )
+                  ],
+                ),
+              )),
+        ));
   }
 }

@@ -1,7 +1,9 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'crudTecnicos/createTecnico.dart';
 import 'crudTecnicos/updateTecnico.dart';
@@ -20,16 +22,14 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+          backgroundColor: CustomColors.background,
           child: const Icon(Icons.add),
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => CreateTecnico()),
             );
           }),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Lista de Técnicos"),
-      ),
+      appBar: MyAppBar(title: "Lista de Técnicos"),
       body: ValueListenableBuilder(
         valueListenable: boxform,
         builder: (context, Box<Tecnicos> box, _) {
@@ -62,8 +62,8 @@ class _TecnicosDetailPageState extends State<TecnicosDetailPage> {
                     await box.deleteAt(index);
                   },
                   title: Text(tecnicoBox!.descricao!,
-                      style:
-                          const TextStyle(fontSize: 20, fontFamily: 'Montserrat')),
+                      style: const TextStyle(
+                          fontSize: 20, fontFamily: 'Montserrat')),
                   subtitle: Text(tecnicoBox.nome!),
                 );
               });

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:flutter_hiver_tasks/widget/customSnackBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -84,9 +85,8 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
         },
         child: const Text("OK"),
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.nomeCurrent!),
+      appBar: MyAppBar( 
+        title: widget.nomeCurrent!
       ),
       body: ValueListenableBuilder(
         valueListenable: boxAtividades,

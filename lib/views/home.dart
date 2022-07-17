@@ -1,6 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
+import '../widget/customAppBar.dart';
 import 'administrador.dart';
 import 'tecnicos.dart';
 
@@ -16,12 +18,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Home Page"),
+      appBar: MyAppBar(
+        title: "Home Page",
       ),
       body: Container(
-          decoration: const BoxDecoration(color: Colors.blue),
+          decoration: const BoxDecoration(color: CustomColors.background),
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
                   },
                   child: Container(
                     decoration: const BoxDecoration(
-                        color: Colors.blueAccent,
+                        color: CustomColors.backgroundCards,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     height: size.height / 4,
                     width: size.width,
@@ -62,7 +63,7 @@ class _HomeState extends State<Home> {
                   },
                   child: Container(
                     decoration: const BoxDecoration(
-                        color: Colors.blueAccent,
+                        color: CustomColors.backgroundCards,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     height: size.height / 4,
                     width: size.width,

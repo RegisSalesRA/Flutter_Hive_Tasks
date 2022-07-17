@@ -1,8 +1,10 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../widget/customSnackBar.dart';
@@ -10,7 +12,7 @@ import '../../../widget/customSnackBar.dart';
 class CreateTecnico extends StatefulWidget {
   final formkey = GlobalKey<FormState>();
 
-   CreateTecnico({Key? key}) : super(key: key);
+  CreateTecnico({Key? key}) : super(key: key);
   @override
   _CreateTecnicoState createState() => _CreateTecnicoState();
 }
@@ -28,7 +30,7 @@ class _CreateTecnicoState extends State<CreateTecnico> {
         descricao: descricao,
       ));
       ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Tecnico atualizado com sucesso!",2));
+          .showSnackBar(snackbar("Tecnico atualizado com sucesso!", 2));
       Navigator.of(context).pop();
     }
   }
@@ -36,10 +38,8 @@ class _CreateTecnicoState extends State<CreateTecnico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Criar de Tecnicos",
-            style: TextStyle(fontFamily: 'Montserrat')),
+      appBar: MyAppBar(
+        title: "Criar de Tecnicos",
       ),
       body: Form(
           key: widget.formkey,
@@ -85,7 +85,10 @@ class _CreateTecnicoState extends State<CreateTecnico> {
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: adicionarTecnico, child: const Text('Submit Data')),
+                      onPressed: adicionarTecnico,
+                      style: ElevatedButton.styleFrom(
+                          primary: CustomColors.background),
+                      child: const Text('Adicionar Técnico')),
                 ],
               ))),
     );

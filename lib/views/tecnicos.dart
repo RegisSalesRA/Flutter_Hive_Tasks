@@ -1,6 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 
 import 'areaTecnicos/atividadeTecnicoDetails.dart';
 
@@ -16,13 +18,12 @@ class _TecnicosPageState extends State<TecnicosPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Técnicos Page"),
-        ),
+        appBar: MyAppBar(title: "Técnicos Page"),
         body: Container(
             width: size.width,
-            decoration: const BoxDecoration(color: Colors.blue),
+            decoration: const BoxDecoration(
+              color: CustomColors.background,
+            ),
             child: Padding(
               padding: const EdgeInsets.all(5),
               child: Column(
@@ -32,7 +33,8 @@ class _TecnicosPageState extends State<TecnicosPage> {
                     children: [
                       const Text(
                         "Bem-vindo Sr.técnico",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle(
+                            color: CustomColors.textColor, fontSize: 20),
                       ),
                       SizedBox(
                         height: size.height / 5,
@@ -47,7 +49,7 @@ class _TecnicosPageState extends State<TecnicosPage> {
                         },
                         child: Container(
                           decoration: const BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: CustomColors.backgroundCards,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0))),
                           height: size.height / 4,
@@ -57,7 +59,7 @@ class _TecnicosPageState extends State<TecnicosPage> {
                               "Atividade dos Técnicos",
                               style: TextStyle(
                                   decoration: TextDecoration.none,
-                                  color: Colors.white,
+                                  color: CustomColors.textColor,
                                   fontSize: 30),
                             ),
                           ),

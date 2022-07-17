@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../widget/customSnackBar.dart';
@@ -38,10 +39,8 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.nomeCurrent!,
-            style: const TextStyle(fontFamily: 'Montserrat')),
+      appBar: MyAppBar(
+        title: widget.nomeCurrent!,
       ),
       body: Form(
           key: widget.formkey,
@@ -69,8 +68,6 @@ class _UpdateAtividadeState extends State<UpdateAtividade> {
                   const SizedBox(
                     height: 15,
                   ),
-              
-              
                   const SizedBox(
                     height: 55,
                   ),

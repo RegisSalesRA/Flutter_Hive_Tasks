@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'crudAtividades/createAtividade.dart';
 import 'crudAtividades/updateAtividade.dart';
@@ -16,22 +18,20 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
   @override
   Widget build(BuildContext context) {
     var boxform = Hive.box<Atividades>('atividades').listenable();
-   
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        backgroundColor: CustomColors.background,
+        child: const Icon(
+          Icons.add,
+        ),
         onPressed: () {
-         
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => AdicionarAtividade()),
           );
         },
       ),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Lista de Atividades"),
-      ),
+      appBar: MyAppBar(title: "Lista de Atividades"),
       body: ValueListenableBuilder(
         valueListenable: boxform,
         builder: (context, Box<Atividades> box, _) {

@@ -17,7 +17,6 @@ Future main() async {
   await Hive.openBox<Atividades>('atividades');
   Hive.registerAdapter(TecnicosAdapter());
   await Hive.openBox<Tecnicos>('tecnicos');
-
   runApp(const MyApp());
 }
 

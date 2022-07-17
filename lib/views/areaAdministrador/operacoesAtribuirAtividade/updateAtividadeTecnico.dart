@@ -2,8 +2,10 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
+import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class UpDateAtividadeTecnico extends StatefulWidget {
@@ -29,10 +31,7 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
 
     if (atividadesTecnico == null) {
       return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.nomeCurrent!),
-        ),
+        appBar: MyAppBar(title: widget.nomeCurrent!),
         body: const Center(
           child: Text("Nenhuma atividade cadastrada!",
               style: TextStyle(fontFamily: 'Montserrat')),
@@ -40,10 +39,7 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
       );
     }
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("Tecnico ${widget.nomeCurrent!}"),
-        ),
+        appBar: MyAppBar(title: "Tecnico ${widget.nomeCurrent!}"),
         body: ListView.builder(
             itemCount: atividadesTecnico.length,
             itemBuilder: (context, index) {
@@ -64,7 +60,7 @@ class _UpDateAtividadeTecnicoState extends State<UpDateAtividadeTecnico> {
                     tecnico.atividadesAtribuidas![index].isComplete == true
                         ? Icons.check_box
                         : Icons.check_box_outline_blank,
-                    color: Colors.blue,
+                    color: CustomColors.background,
                   ),
                 ),
               );
