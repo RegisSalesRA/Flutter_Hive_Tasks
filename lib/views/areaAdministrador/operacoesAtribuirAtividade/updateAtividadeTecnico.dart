@@ -11,10 +11,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 class UpDateAtividadeTecnico extends StatefulWidget {
   final int? id;
   final String? nomeCurrent;
-  final String? descricaoCurrent;
-  const UpDateAtividadeTecnico(
-      {Key? key, this.id, this.nomeCurrent, this.descricaoCurrent})
-      : super(key: key);
+  const UpDateAtividadeTecnico({
+    Key? key,
+    this.id,
+    this.nomeCurrent,
+  }) : super(key: key);
   @override
   _UpDateAtividadeTecnicoState createState() => _UpDateAtividadeTecnicoState();
 }

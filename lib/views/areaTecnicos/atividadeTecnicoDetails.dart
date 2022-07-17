@@ -53,7 +53,6 @@ class _AtividadeTecnicoDetailsState extends State<AtividadeTecnicoDetails> {
                                   builder: (context) => UpDateAtividadeTecnico(
                                         id: index,
                                         nomeCurrent: tecnicoBox.nome!,
-                                        descricaoCurrent: tecnicoBox.descricao!,
                                       )),
                             );
                           },

@@ -19,16 +19,13 @@ class AtribuirAtividadeTecnico extends StatefulWidget {
 
 class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
   String nome = "";
-  String descricao = "";
 
   @override
   Widget build(BuildContext context) {
     var boxform = Hive.box<Tecnicos>('tecnicos').listenable();
 
     return Scaffold(
-        appBar: MyAppBar( 
-          title:  "Atribuir Atividade" 
-        ),
+        appBar: MyAppBar(title: "Atribuir Atividade"),
         body: ValueListenableBuilder(
             valueListenable: boxform,
             builder: (context, Box<Tecnicos> box, _) {
@@ -54,7 +51,6 @@ class _AtribuirAtividadeTecnicoState extends State<AtribuirAtividadeTecnico> {
                                   builder: (context) => EscolherAtividade(
                                         id: index,
                                         nomeCurrent: form.nome!,
-                                        descricaoCurrent: form.descricao!,
                                         listaAtividadesCurrent:
                                             form.atividadesAtribuidas,
                                       )));

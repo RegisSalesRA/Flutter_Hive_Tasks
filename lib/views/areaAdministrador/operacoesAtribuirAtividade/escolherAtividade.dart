@@ -10,15 +10,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 class EscolherAtividade extends StatefulWidget {
   final int? id;
   final String? nomeCurrent;
-  final String? descricaoCurrent;
   final List<Atividades>? listaAtividadesCurrent;
 
   const EscolherAtividade(
-      {Key? key,
-      this.id,
-      this.nomeCurrent,
-      this.descricaoCurrent,
-      this.listaAtividadesCurrent})
+      {Key? key, this.id, this.nomeCurrent, this.listaAtividadesCurrent})
       : super(key: key);
   @override
   // ignore: library_private_types_in_public_api
@@ -52,7 +47,6 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
     if (listaAdicionadas2 != []) {
       Tecnicos tecnicoModel = Tecnicos(
         nome: widget.nomeCurrent,
-        descricao: widget.descricaoCurrent,
         atividadesAtribuidas: listaAdicionadas2,
       );
 
@@ -85,9 +79,7 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
         },
         child: const Text("OK"),
       ),
-      appBar: MyAppBar( 
-        title: widget.nomeCurrent!
-      ),
+      appBar: MyAppBar(title: widget.nomeCurrent!),
       body: ValueListenableBuilder(
         valueListenable: boxAtividades,
         builder: (context, Box<Atividades?> atividadeBox, _) {
