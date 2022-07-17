@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
@@ -9,29 +7,41 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../widget/customSnackBar.dart';
 
-class CreateTecnico extends StatefulWidget {
+class TecnicoForm extends StatefulWidget {
+  var id = null;
   final formkey = GlobalKey<FormState>();
-
-  CreateTecnico({Key? key}) : super(key: key);
+  TecnicoForm({Key? key, this.id}) : super(key: key);
   @override
-  _CreateTecnicoState createState() => _CreateTecnicoState();
+  _TecnicoFormState createState() => _TecnicoFormState();
 }
 
-class _CreateTecnicoState extends State<CreateTecnico> {
+class _TecnicoFormState extends State<TecnicoForm> {
   String nome = "";
-  String descricao = "";
-  List<Atividades> atividadesAtribuidas = [];
 
-  adicionarTecnico() async {
-    if (widget.formkey.currentState!.validate()) {
-      Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
-      tecnicoBox.add(Tecnicos(
-        nome: nome,
-        descricao: descricao,
-      ));
-      ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Tecnico atualizado com sucesso!", 2));
-      Navigator.of(context).pop();
+  formTecnico() async {
+    var index = widget.id;
+    if (index == null) {
+      if (widget.formkey.currentState!.validate()) {
+        Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+        tecnicoBox.add(Tecnicos(
+          nome: nome,
+        ));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(snackbar("Tecnico atualizado com sucesso!", 2));
+        Navigator.of(context).pop();
+      }
+    } else {
+      if (widget.formkey.currentState!.validate()) {
+        Tecnicos tecnicoModel = Tecnicos(
+          nome: nome,
+        );
+        Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+        tecnicoBox.putAt(index!, tecnicoModel);
+
+        ScaffoldMessenger.of(context)
+            .showSnackBar(snackbar("Tecnico atualizado com sucesso!", 2));
+        Navigator.of(context).pop();
+      }
     }
   }
 
@@ -67,25 +77,11 @@ class _CreateTecnicoState extends State<CreateTecnico> {
                   const SizedBox(
                     height: 15,
                   ),
-                  TextFormField(
-                    validator: (v) {
-                      if (v!.isEmpty) {
-                        return "Por favor preencher os dados";
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(hintText: 'Descricao'),
-                    onChanged: (value) {
-                      setState(() {
-                        descricao = value;
-                      });
-                    },
-                  ),
                   const SizedBox(
                     height: 55,
                   ),
                   ElevatedButton(
-                      onPressed: adicionarTecnico,
+                      onPressed: formTecnico,
                       style: ElevatedButton.styleFrom(
                           primary: CustomColors.background),
                       child: const Text('Adicionar Técnico')),

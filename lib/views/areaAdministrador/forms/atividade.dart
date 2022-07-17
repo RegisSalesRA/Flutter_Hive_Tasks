@@ -7,23 +7,43 @@ import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../widget/customSnackBar.dart';
 
-class AdicionarAtividade extends StatefulWidget {
+class AtividadeForm extends StatefulWidget {
+  var id = null;
+
+  AtividadeForm({
+    Key? key,
+    this.id,
+  }) : super(key: key);
   final formkey = GlobalKey<FormState>();
   @override
-  _AdicionarAtividadeState createState() => _AdicionarAtividadeState();
+  _AtividadeFormState createState() => _AtividadeFormState();
 }
 
-class _AdicionarAtividadeState extends State<AdicionarAtividade> {
+class _AtividadeFormState extends State<AtividadeForm> {
   String nome = "";
   bool isComplete = false;
 
-  adicioniarAtividade() async {
-    if (widget.formkey.currentState!.validate()) {
-      Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
-      atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
-      ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("Atividade criada com sucesso!", 2));
-      Navigator.of(context).pop();
+  formAtividade() async {
+    var index = widget.id;
+    if (index == null) {
+      if (widget.formkey.currentState!.validate()) {
+        Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
+        atividadeBox.add(Atividades(nome: nome, isComplete: isComplete));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(snackbar("Atividade criada com sucesso!", 2));
+        Navigator.of(context).pop();
+      }
+    } else {
+      if (widget.formkey.currentState!.validate()) {
+        Atividades atividadeModel =
+            Atividades(nome: nome, isComplete: isComplete);
+        Box<Atividades> atividadeBox = Hive.box<Atividades>('atividades');
+        atividadeBox.putAt(index!, atividadeModel);
+
+        ScaffoldMessenger.of(context)
+            .showSnackBar(snackbar("Atividade atualizada com sucesso!", 2));
+        Navigator.of(context).pop();
+      }
     }
   }
 
@@ -61,7 +81,7 @@ class _AdicionarAtividadeState extends State<AdicionarAtividade> {
                     height: 15,
                   ),
                   ElevatedButton(
-                    onPressed: adicioniarAtividade,
+                    onPressed: formAtividade,
                     style: ElevatedButton.styleFrom(
                         primary: CustomColors.background),
                     child: const Text('Adicionar Atividade'),

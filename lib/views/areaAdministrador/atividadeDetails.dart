@@ -2,10 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/css/colors.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
+import 'package:flutter_hiver_tasks/views/areaAdministrador/forms/atividade.dart';
 import 'package:flutter_hiver_tasks/widget/customAppBar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'crudAtividades/createAtividade.dart';
-import 'crudAtividades/updateAtividade.dart';
 
 class AtividadeDetailsPage extends StatefulWidget {
   const AtividadeDetailsPage({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
         ),
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => AdicionarAtividade()),
+            MaterialPageRoute(builder: (context) => AtividadeForm()),
           );
         },
       ),
@@ -44,24 +43,58 @@ class _AtividadeDetailsPageState extends State<AtividadeDetailsPage> {
           return ListView.builder(
               itemCount: box.length,
               itemBuilder: (context, index) {
-                Atividades? form = box.getAt(index);
+                Atividades? atividade = box.getAt(index);
 
-                return ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UpdateAtividade(
-                                    id: index,
-                                    nomeCurrent: form!.nome!,
-                                  )));
-                    },
-                    onLongPress: () async {
-                      await box.deleteAt(index);
-                    },
-                    title: Text(form!.nome!,
-                        style: const TextStyle(
-                            fontSize: 20, fontFamily: 'Montserrat')));
+                return Container(
+                  height: 50,
+                  margin: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: CustomColors.backgroundCards,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 2.0,
+                        spreadRadius: 0.0,
+                        offset: Offset(2.0, 2.0),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: 300,
+                          child: Text(atividade!.nome!,
+                              style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: 20,
+                                  fontFamily: 'Montserrat')),
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AtividadeForm(
+                                              id: index,
+                                            )));
+                              },
+                              child: Icon(Icons.edit),
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                await box.deleteAt(index);
+                              },
+                              child: Icon(Icons.delete),
+                            ),
+                          ],
+                        )
+                      ]),
+                );
               });
         },
       ),
