@@ -1,5 +1,3 @@
-// ignore_for_file: file_names, avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hiver_tasks/model/atividade_model.dart';
 import 'package:flutter_hiver_tasks/model/tecnicos_model.dart';
@@ -22,63 +20,52 @@ class EscolherAtividade extends StatefulWidget {
 
 class _EscolherAtividadeState extends State<EscolherAtividade> {
   var boxAtividades = Hive.box<Atividades>('atividades').listenable();
+  List<Atividades> listasDeAtividadesNaMemoria = [];
 
-  List<Atividades> listaAdicionadas = [];
-
-  void adicionarTarefa() {
+  void adicionarTarefa(Atividades indexAtividade) {
     final id = widget.id;
+    List<Atividades> listaDeAtividades = [];
+    try {
+      if (widget.listaAtividadesCurrent == [] ||
+          widget.listaAtividadesCurrent == null) {
+        listasDeAtividadesNaMemoria.add(indexAtividade);
+        for (var iten in listasDeAtividadesNaMemoria) {
+          listaDeAtividades.add(iten);
+        }
+        Tecnicos tecnicoModel = Tecnicos(
+          nome: widget.nomeCurrent,
+          atividadesAtribuidas: listaDeAtividades,
+        );
 
-    List<Atividades> listaAdicionadas2 = [];
-
-    if (widget.listaAtividadesCurrent != null ||
-        widget.listaAtividadesCurrent != []) {
-      print(widget.listaAtividadesCurrent);
-
-      for (var iten in listaAdicionadas) {
-        listaAdicionadas2.add(iten);
+        Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+        tecnicoBox.putAt(id!, tecnicoModel);
+        ScaffoldMessenger.of(context).showSnackBar(
+            snackbar("A Atividade para ${tecnicoModel.nome}!", 2));
+      } else {
+        listasDeAtividadesNaMemoria.add(indexAtividade);
+        for (var iten in listasDeAtividadesNaMemoria) {
+          listaDeAtividades.add(iten);
+          listaDeAtividades.addAll(widget.listaAtividadesCurrent!);
+        }
+        print(listaDeAtividades.length);
+        var listasAtividadesSet = listaDeAtividades.toSet().toList();
+        Tecnicos tecnicoModel = Tecnicos(
+          nome: widget.nomeCurrent,
+          atividadesAtribuidas: listasAtividadesSet,
+        );
+        Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
+        tecnicoBox.putAt(id!, tecnicoModel);
+        ScaffoldMessenger.of(context).showSnackBar(
+            snackbar("A Atividade para ${tecnicoModel.nome}!", 2));
       }
-    } else {
-      List<Atividades> listaAdicionadas2 = [...widget.listaAtividadesCurrent!];
-      for (var iten in listaAdicionadas) {
-        listaAdicionadas2.add(iten);
-      }
+    } catch (e) {
+      print(e);
     }
-
-    if (listaAdicionadas2 != []) {
-      Tecnicos tecnicoModel = Tecnicos(
-        nome: widget.nomeCurrent,
-        atividadesAtribuidas: listaAdicionadas2,
-      );
-
-      Box<Tecnicos> tecnicoBox = Hive.box<Tecnicos>('tecnicos');
-      tecnicoBox.putAt(id!, tecnicoModel);
-
-      ScaffoldMessenger.of(context)
-          .showSnackBar(snackbar("A Atividade para ${tecnicoModel.nome}!", 2));
-    } else {
-      print("Não foi possível adicionar");
-    }
-  }
-
-  void checarSeExiste(Atividades indexAtividade) {
-    if (listaAdicionadas.contains(indexAtividade)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          snackbar("A Atividade ${indexAtividade.nome} já foi adicionada!", 2));
-    } else {
-      listaAdicionadas.add(indexAtividade);
-    }
-    print(listaAdicionadas.length);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          adicionarTarefa();
-        },
-        child: const Text("OK"),
-      ),
       appBar: MyAppBar(title: widget.nomeCurrent!),
       body: ValueListenableBuilder(
         valueListenable: boxAtividades,
@@ -100,8 +87,6 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
                       style: const TextStyle(
                           fontSize: 20, fontFamily: 'Montserrat')),
                   onLongPress: () async {
-                    checarSeExiste(atividadesListas[index]!);
-
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -118,6 +103,7 @@ class _EscolherAtividadeState extends State<EscolherAtividade> {
                               ),
                               TextButton(
                                 onPressed: () {
+                                  adicionarTarefa(atividadesListas[index]!);
                                   atividadeBox.deleteAt(index);
                                   Navigator.pop(context);
                                 },
