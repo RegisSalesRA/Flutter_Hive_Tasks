@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/Version-2.0.0-blue"> 
+<img src="https://img.shields.io/badge/Version-1.0.0+1-blue"> 
 
 # Flutter Hive Tasks
 
@@ -62,6 +62,10 @@ $ flutter run
 
 -  hive: ^2.0.4
 -  hive_flutter: ^1.0.0    
+-  build_runner: ^2.1.0
+-  hive_generator: ^1.0.1  
+-  flutter_native_splash: ^1.2.0
+-  flutter_launcher_icons: ^0.9.1
 
 </br>
 
